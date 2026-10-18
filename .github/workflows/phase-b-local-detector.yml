@@ -1,0 +1,332 @@
+name: Phase B local detector per engine
+# Frozen study: examples/phase_b_local_detector.py + examples/study_manifests/phase-b-local-detector.json.
+# Sizing (owner rule: ceilings are 3x estimates): measured ~14,100 runner-minutes in total;
+# 125 shards of ~116 measured minutes each, job limit 360 minutes, no new chunks after 280.
+# If any chunk is unfinished, dispatch again with continue_from = the earlier run id.
+'on':
+  workflow_dispatch:
+    inputs:
+      continue_from:
+        description: Earlier run id whose completed chunks are reused (blank for a fresh run)
+        required: false
+        default: ''
+  push:
+    branches: [codex/multiengine-preflight]
+    paths: [.github/workflows/phase-b-local-detector.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: phase-b-local-detector
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: pwsh
+env:
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+  GH_TOKEN: ${{ github.token }}
+  MANIFEST: examples/study_manifests/phase-b-local-detector.json
+  RESULTS: examples/results/2026-10-18-phase-b-local-detector
+  PINS: numpy==1.26.4 scipy==1.11.2 pandas==2.2.3 patsy==1.0.1 packaging==23.2 statsmodels==0.14.4 scikit-learn==1.3.0 lightgbm==4.6.0
+jobs:
+  register:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - run: echo 'Registration only; no scientific computation.'
+  prepare:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: windows-2022
+    timeout-minutes: 60
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            examples/phase_a_linear_reference.py
+            examples/phase_a_prime_small_sample.py
+            examples/phase_b_local_detector.py
+            examples/phase_b_actions.py
+            examples/study_manifests/phase-b-local-detector.json
+            .github/workflows/phase-b-local-detector.yml
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime
+        timeout-minutes: 10
+        run: |
+          python -m pip install $env:PINS.Split(' ')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Fetch completed chunks from the earlier run
+        if: inputs.continue_from != ''
+        run: |
+          New-Item -ItemType Directory -Force .phase-b/prev | Out-Null
+          gh run download ${{ inputs.continue_from }} -R ${{ github.repository }} -p 'phase-b-shard-*' -D .phase-b/prev/shards
+          gh run download ${{ inputs.continue_from }} -R ${{ github.repository }} -n phase-b-carried -D .phase-b/prev/carried
+          exit 0
+      - id: plan
+        name: Verify frozen manifest, run cross-platform checks, plan chunks
+        run: |
+          $carry = @()
+          if (Test-Path .phase-b/prev) { $carry = @('--carry', '.phase-b/prev') }
+          $matrix = python -I examples/phase_b_actions.py prepare --manifest $env:MANIFEST --out .phase-b/prepare --shards 125 @carry
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "matrix=$matrix" >> $env:GITHUB_OUTPUT
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: phase-b-prepare
+          path: |
+            .phase-b/prepare/
+            !.phase-b/prepare/carried/
+          if-no-files-found: error
+          retention-days: 90
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: phase-b-carried
+          path: .phase-b/prepare/carried/
+          if-no-files-found: ignore
+          retention-days: 90
+  shard:
+    name: shard (${{ matrix.shard }})
+    needs: prepare
+    runs-on: windows-2022
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            examples/phase_a_linear_reference.py
+            examples/phase_a_prime_small_sample.py
+            examples/phase_b_local_detector.py
+            examples/phase_b_actions.py
+            examples/study_manifests/phase-b-local-detector.json
+            .github/workflows/phase-b-local-detector.yml
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime
+        timeout-minutes: 10
+        run: |
+          python -m pip install $env:PINS.Split(' ')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: phase-b-prepare
+          path: .phase-b/prepare
+      - name: Compute assigned chunks (no new chunks after 280 minutes)
+        timeout-minutes: 340
+        env:
+          SHARD: ${{ matrix.shard }}
+        run: |
+          python -I examples/phase_b_actions.py shard --manifest $env:MANIFEST --plan .phase-b/prepare/plan.json --shard $env:SHARD --out .phase-b/shard --deadline-seconds 16800
+          exit $LASTEXITCODE
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        timeout-minutes: 10
+        with:
+          name: phase-b-shard-${{ matrix.shard }}
+          path: .phase-b/shard/
+          if-no-files-found: warn
+          retention-days: 90
+  aggregate:
+    needs: [prepare, shard]
+    if: ${{ always() && needs.prepare.result == 'success' }}
+    runs-on: windows-2022
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            examples/phase_a_linear_reference.py
+            examples/phase_a_prime_small_sample.py
+            examples/phase_b_local_detector.py
+            examples/phase_b_actions.py
+            examples/study_manifests/phase-b-local-detector.json
+            .github/workflows/phase-b-local-detector.yml
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime
+        timeout-minutes: 10
+        run: |
+          python -m pip install $env:PINS.Split(' ')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: phase-b-prepare
+          path: .phase-b/prepare
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        continue-on-error: true
+        with:
+          pattern: phase-b-shard-*
+          path: .phase-b/downloaded/shards
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        continue-on-error: true
+        with:
+          name: phase-b-carried
+          path: .phase-b/downloaded/carried
+      - name: Reassemble cells, summarize, apply frozen criteria
+        run: |
+          New-Item -ItemType Directory -Force $env:RESULTS | Out-Null
+          python -I examples/phase_b_actions.py aggregate --manifest $env:MANIFEST --plan .phase-b/prepare/plan.json --download .phase-b/downloaded --results $env:RESULTS
+          $code = $LASTEXITCODE
+          Copy-Item .phase-b/prepare/plan.json, .phase-b/prepare/prepare.json, .phase-b/prepare/manifest.json $env:RESULTS
+          if (Test-Path "$env:RESULTS/aggregate.json") { "``````json" >> $env:GITHUB_STEP_SUMMARY; Get-Content "$env:RESULTS/aggregate.json" -TotalCount 80 >> $env:GITHUB_STEP_SUMMARY; "``````" >> $env:GITHUB_STEP_SUMMARY }
+          exit $code
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: phase-b-results
+          path: ${{ env.RESULTS }}/
+          if-no-files-found: error
+          retention-days: 90
+  regen:
+    name: regen (${{ matrix.part }})
+    needs: aggregate
+    if: ${{ needs.aggregate.result == 'success' }}
+    runs-on: windows-2022
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [0, 1, 2, 3, 4, 5, 6, 7]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            examples/phase_a_linear_reference.py
+            examples/phase_a_prime_small_sample.py
+            examples/phase_b_local_detector.py
+            examples/phase_b_actions.py
+            examples/study_manifests/phase-b-local-detector.json
+            .github/workflows/phase-b-local-detector.yml
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime
+        timeout-minutes: 10
+        run: |
+          python -m pip install $env:PINS.Split(' ')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: phase-b-results
+          path: ${{ env.RESULTS }}
+      - name: Regenerate the stratified 1% sample and the loop-implementation datasets
+        env:
+          PART: ${{ matrix.part }}
+        run: |
+          python -I examples/phase_b_actions.py regen --manifest $env:MANIFEST --results $env:RESULTS --part $env:PART --parts 8 --out .phase-b/regen
+          exit $LASTEXITCODE
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: phase-b-regen-${{ matrix.part }}
+          path: .phase-b/regen/
+          if-no-files-found: error
+          retention-days: 90
+  review:
+    needs: [aggregate, regen]
+    if: ${{ always() && needs.aggregate.result == 'success' }}
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            examples/results/2026-10-18-phase-b-local-detector/review.py
+            .github/workflows/phase-b-local-detector.yml
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime
+        timeout-minutes: 10
+        run: |
+          python -m pip install $env:PINS.Split(' ')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: phase-b-results
+          path: ${{ env.RESULTS }}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        continue-on-error: true
+        with:
+          pattern: phase-b-regen-*
+          path: ${{ env.RESULTS }}/regen
+      - name: Independent review
+        run: |
+          python -I "$env:RESULTS/review.py"
+          $code = $LASTEXITCODE
+          if (Test-Path "$env:RESULTS/verification.json") { "``````json" >> $env:GITHUB_STEP_SUMMARY; Get-Content "$env:RESULTS/verification.json" -TotalCount 60 >> $env:GITHUB_STEP_SUMMARY; "``````" >> $env:GITHUB_STEP_SUMMARY }
+          exit $code
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: phase-b-results-reviewed
+          path: ${{ env.RESULTS }}/
+          if-no-files-found: error
+          retention-days: 90
+  publish:
+    needs: review
+    if: ${{ needs.review.result == 'success' }}
+    permissions:
+      contents: write
+      actions: read
+    runs-on: windows-2022
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            examples/phase_a_linear_reference.py
+            examples/phase_a_prime_small_sample.py
+            examples/phase_b_local_detector.py
+            examples/phase_b_actions.py
+            .github/workflows/phase-b-local-detector.yml
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.11.9
+      - name: Install pinned runtime
+        timeout-minutes: 10
+        run: |
+          python -m pip install $env:PINS.Split(' ')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: phase-b-results-reviewed
+          path: .phase-b/results
+      - name: Publish durable prerelease and verify by download
+        run: |
+          python -I examples/phase_b_actions.py publish --results .phase-b/results --tag "phase-b-local-detector-2026-10-18-${{ github.run_id }}" --target "${{ github.sha }}"
+          exit $LASTEXITCODE
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: phase-b-publication-verification
+          path: .phase-b/results/publication-verification.json
+          if-no-files-found: error
+          retention-days: 90

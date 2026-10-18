@@ -1,7 +1,14 @@
 # Phase B protocol: local detector per engine
 
-Date: 2026-10-18. Status: **DRAFT; owner review resolved 2026-10-18 (§10).**
-Nothing is implemented, frozen or dispatched.
+Date: 2026-10-18. Status: **FROZEN 2026-10-18.**
+
+- Manifest: `examples/study_manifests/phase-b-local-detector.json`, canonical
+  SHA-256 `73aef5e6…febd`. It was generated on the windows-2022 runner during
+  the passing check.
+- Source: `examples/phase_b_local_detector.py`, `7f2da249…5af6`.
+- Fixture check passed on Actions run 39113988219
+  (`examples/results/2026-10-18-phase-b-local-detector-check/`).
+- Execution and budget: amendment B1 (§11).
 
 Plan: `2026-10-17-detection-method-test-plan.md` §6 Phase B, decisions D1–D7.
 Inputs: Phase A results (`examples/results/2026-10-17-phase-a-linear-reference/`)
@@ -260,6 +267,7 @@ under an exact null.
 **Budget:**
 
 - Ceiling: **15,000 runner-minutes** (D7), approved before dispatch.
+  *Superseded by amendment B1 (§11): about 45,000 runner-minutes.*
 - If B0 projects more, cuts are applied before freezing, in this order:
   1. signal reps 400 → 300;
   2. drop F4;
@@ -444,7 +452,7 @@ As in Phase A′:
 
 - recomputes every summary and criterion from saved p-values;
 - re-derives the correction choice and the supported-N table;
-- regenerates 1% of datasets (stratified by N and shape) with the loop
+- regenerates 1% of datasets *(amended in B1: see §11)* (stratified by N and shape) with the loop
   implementations of GCM and PCM, matching to 1e-10 on the same runner image.
 
 **Actions layout** (as Phase A′, amendment A1):
@@ -467,11 +475,68 @@ As in Phase A′:
 | Q5 | Allowance settings | Margin .005, count level .01, gross bound 3.89 SE |
 | Q6 | Replications | 1,000 per null cell, 400 per signal cell |
 
-Next steps:
+Steps:
 
-1. Implement `examples/phase_b_local_detector.py` and run `--check`, with
-   results shown before anything runs.
-2. Run B0 (the timing probe) on Actions and set the budget, applying the cuts
-   in §4 if needed.
-3. Freeze the manifest and record its SHA.
-4. Dispatch.
+1. ~~Implement the script and run `--check`.~~ Done 2026-10-18. Every part
+   passed on Actions run 39113988219.
+2. ~~B0 and the budget.~~ Done by amendment B1.
+3. ~~Freeze the manifest.~~ Done: `73aef5e6…febd`.
+4. Dispatch the workflow `.github/workflows/phase-b-local-detector.yml`.
+
+## 11. Amendment B1: budget and execution (2026-10-18, owner decision)
+
+Made before any study data exist. Nothing in the design, seeds or criteria
+changes.
+
+**B0 and the budget:**
+
+- The check's `runtime` part ran on the study's runner image (windows-2022,
+  4 concurrent workers). It measured seconds per dataset of:
+  - 70 at N = 1,000, 124 at N = 2,000 and 238 at N = 5,000;
+  - 105 at N = 300 and 97 at N = 500 (small-N cells, including the K = 10
+    fits).
+  - The screen cells are negligible.
+- Total: about 3.39 × 10⁶ thread-seconds, or **about 14,100 runner-minutes**
+  for the full grid. This replaces the draft's rough projection of 4,000–6,000.
+- **Owner decision:** keep the full grid, with no §4 cuts, and raise the
+  ceiling to **about 45,000 runner-minutes** (3× the measured figure, owner
+  rule). The repository is public, so standard runners cost nothing.
+- The check's runtime part serves as B0 for Phase B. The N = 50,000, p = 15
+  probe that D7 asked for belongs to Phase D and moves to that protocol.
+
+**Execution** (harness `examples/phase_b_actions.py`, an execution detail and
+not design):
+
+- **Chunks:** replications are split into chunks of 5 (N = 5,000), 10
+  (N = 2,000 and small-N cells), 15 (N = 1,000) or 250 (screen cells). Each
+  chunk takes about 20 measured minutes or less, and is run by the frozen
+  `run_chunk()`.
+- **Shards:** chunks are spread over **125 shards** by longest-processing-time
+  assignment, each about 116 measured minutes at 4 workers. Each job's limit
+  is 360 minutes, about 3× its expected time. No new chunks start after
+  280 minutes, which leaves 80 minutes, more than 3× the longest chunk.
+  Shards run 20 at a time, so expected wall time is about 12 hours; allowing
+  3×, up to about 36 hours.
+- **Continuation:** an unfinished chunk is never estimated or dropped.
+  `aggregate` refuses to compute criteria until every chunk is present. A new
+  dispatch with `continue_from = <run id>` verifies the earlier run's chunk
+  files (seeds, shapes, finite p in [0, 1]), reuses them and computes only
+  the rest.
+- **Cross-platform checks:** `prepare` repeats the HC4 identity, GCM identity,
+  determinism and run-guard checks on the runner. The full check already
+  passed there for this exact source.
+
+**Review regeneration** (replaces the last bullet of §9's review):
+
+- 1% of datasets, stratified by cell (565), are regenerated with the frozen
+  `generate` and `analyze` and must match the stored p-values to 1e-10.
+- A further 20 datasets (N = 1,000 signal cells) are recomputed with the
+  separately written loop implementations of GCM and PCM for all four engines,
+  also to 1e-10.
+- Loop equivalence on fixtures was already shown by the check (max difference
+  4.4e-16).
+- Regeneration runs as 8 parallel Actions jobs.
+- `review.py` doesn't import the study script. It recomputes every per-cell
+  statistic with its own BH, Bonferroni and Cauchy code, and re-derives the
+  correction choice, ladder, C2 and the supported-N table with its own
+  implementation of §7.
