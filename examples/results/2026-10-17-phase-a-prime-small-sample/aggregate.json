@@ -1,0 +1,180 @@
+{
+ "cells_planned": 268,
+ "cells_complete": 268,
+ "chunks_planned": 2736,
+ "chunks_missing": 0,
+ "problems": [],
+ "shard_controls": [
+  {
+   "shard": 0,
+   "assigned": 136,
+   "completed": 136,
+   "not_started": [],
+   "seconds": 308.2,
+   "complete": true
+  },
+  {
+   "shard": 1,
+   "assigned": 136,
+   "completed": 136,
+   "not_started": [],
+   "seconds": 288.5,
+   "complete": true
+  },
+  {
+   "shard": 2,
+   "assigned": 136,
+   "completed": 136,
+   "not_started": [],
+   "seconds": 285.9,
+   "complete": true
+  },
+  {
+   "shard": 3,
+   "assigned": 136,
+   "completed": 136,
+   "not_started": [],
+   "seconds": 300.6,
+   "complete": true
+  },
+  {
+   "shard": 4,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 277.2,
+   "complete": true
+  },
+  {
+   "shard": 5,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 244.7,
+   "complete": true
+  },
+  {
+   "shard": 6,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 202.6,
+   "complete": true
+  },
+  {
+   "shard": 7,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 464.6,
+   "complete": true
+  },
+  {
+   "shard": 8,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 303.2,
+   "complete": true
+  },
+  {
+   "shard": 9,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 302.1,
+   "complete": true
+  },
+  {
+   "shard": 10,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 308.3,
+   "complete": true
+  },
+  {
+   "shard": 11,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 240.5,
+   "complete": true
+  },
+  {
+   "shard": 12,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 465.6,
+   "complete": true
+  },
+  {
+   "shard": 13,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 292.5,
+   "complete": true
+  },
+  {
+   "shard": 14,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 313.2,
+   "complete": true
+  },
+  {
+   "shard": 15,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 308.4,
+   "complete": true
+  },
+  {
+   "shard": 16,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 283.4,
+   "complete": true
+  },
+  {
+   "shard": 17,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 467.5,
+   "complete": true
+  },
+  {
+   "shard": 18,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 299.4,
+   "complete": true
+  },
+  {
+   "shard": 19,
+   "assigned": 137,
+   "completed": 137,
+   "not_started": [],
+   "seconds": 291.4,
+   "complete": true
+  }
+ ],
+ "runner_seconds_max": 467.5,
+ "complete": true,
+ "selection": {
+  "winner": "M6_hc4_t",
+  "supported_min_n": 275,
+  "applies": "all N",
+  "tied_within_01": [
+   "M6_hc4_t"
+  ],
+  "outcome": "SCOPED: supported from N >= 275"
+ }
+}

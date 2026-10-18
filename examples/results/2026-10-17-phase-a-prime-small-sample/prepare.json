@@ -1,0 +1,78 @@
+{
+ "manifest_sha256": "044bf3863d3e60d2bc8bd2899d4c83b245ed0f50f8b98da6913f452174d8cb01",
+ "source_sha256": "8329c91ee91460460e0787551dfdd3bdf9953e6e59a697e016f4d335642c984b",
+ "checks": {
+  "estimators": {
+   "fixtures": 200,
+   "fixture_cells": [
+    22,
+    24,
+    126,
+    177,
+    230,
+    193,
+    251
+   ],
+   "max_diffs": {
+    "M1_p": 1.176836406102666e-14,
+    "M2_p": 1.176836406102666e-14,
+    "D_hc2_p": 1.199040866595169e-14,
+    "HC4_t_rel": 1.2656542480726785e-14,
+    "HC5_t_rel": 2.6645352591003757e-15
+   },
+   "constant_leverage": {
+    "leverage_range": 0.0,
+    "hc4_equals_hc2_rel": 5.10702591327572e-15,
+    "hc5_equals_hc0_over_sqrt_1mh_rel": 4.6629367034256575e-15
+   },
+   "tolerance": "p 1e-10 abs vs statsmodels; HC4/HC5 t 1e-12 rel vs loop and properties",
+   "pass": true
+  },
+  "bootstrap_brute_force": {
+   "fixtures": 20,
+   "max_abs_p_diff": 0.0,
+   "tolerance": 1e-10,
+   "note": "brute force refits statsmodels HC3 for each of 999 replicates with identical weights",
+   "pass": true
+  },
+  "generation_identity_with_phase_a": {
+   "cells_checked": 32,
+   "max_abs_diff": 0.0,
+   "pass": true
+  },
+  "run_guard": {
+   "refuses_existing_output": true,
+   "pass": true
+  },
+  "smoke_run": {
+   "cells": [
+    20,
+    58,
+    228,
+    244
+   ],
+   "reps_each": 60,
+   "seconds": 1.85,
+   "npz_files": [
+    "cell_020.npz",
+    "cell_058.npz",
+    "cell_228.npz",
+    "cell_244.npz"
+   ],
+   "outputs_written": true,
+   "selection_exercised": {
+    "winner": "M7_hc5_t",
+    "supported_min_n": 275,
+    "applies": "all N",
+    "tied_within_01": [
+     "M7_hc5_t"
+    ],
+    "outcome": "SCOPED: supported from N >= 275"
+   },
+   "note": "fixture seeds; pipeline smoke test only, not evidence",
+   "pass": true
+  }
+ },
+ "all_pass": true,
+ "note": "seed audit and 10^6-row population draws ran locally before freezing (examples/results/2026-10-17-phase-a-prime-small-sample-check/)"
+}

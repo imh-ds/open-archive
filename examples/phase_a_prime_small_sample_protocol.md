@@ -385,3 +385,12 @@ manifest field by field: non-float values must match exactly, and floats must
 match to 1e-12 relative (CPU-specific BLAS kernels can change last bits of the
 computed β, σ² and analytic power). Every run reads those values from the
 frozen file. No computation had started; nothing was retried automatically.
+
+**Result (2026-10-18):** Actions run 39105797558 completed all 268 cells. The
+in-workflow review failed only its BH cross-check, because the statsmodels
+reference misrounded bootstrap p-values lying exactly on a BH threshold. The
+corrected review (exact integer BH) passes every check on the same artifacts;
+nothing was recomputed. Selection under the frozen rule: **HC4, supported from
+N ≥ 275, valid at all N.** See
+`examples/results/2026-10-17-phase-a-prime-small-sample/interpretation.md`,
+including its multiplicity caveat on the HC4 versus wild-bootstrap ranking.

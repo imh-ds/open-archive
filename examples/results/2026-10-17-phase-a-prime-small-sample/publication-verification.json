@@ -1,0 +1,21 @@
+{
+ "release": "https://github.com/imh-ds/open/releases/tag/phase-a-prime-small-sample-2026-10-17-39105797558",
+ "tag": "phase-a-prime-small-sample-2026-10-17-39105797558",
+ "target": "50e821525fb442b11a4383b3d328bd44717e78cf",
+ "actions_run": "https://github.com/imh-ds/open/actions/runs/39105797558",
+ "assets_sha256": {
+  "criteria.json": "2e695371492af174020ed32bd87d7549b8313d7ee54ce482bf53f89c0018cb04",
+  "verification-actions-original.json": "33fc40f8823cfd0cc5c396744faa3fd3d1dd85026f985e14d3a65fb3fe5d3936",
+  "phase-a-prime-pvalues.zip": "40129d65aa9bd4ed04fedcb135efeaf40049530c2eaee7395b59289fdbb526e3",
+  "manifest.json": "4dbd222a57911f6548a0c79f0b1d27786536eb9a08688f157c54b30d4fe74224",
+  "plan.json": "6e9a7c390f476b70d2ee3e8d16816d58b3b486e0fc3dd0f5f62f926dfd5cef5d",
+  "verification.json": "7e954197cdf40af20c5ec78c12f3ab414462fda431d9b8b846b3f46b4e0edfd2",
+  "review.py": "956b881cf011188ca71cc42749a7c4d8322d567bfcfa7f0c0aea2c171b067255",
+  "aggregate.json": "a8deabca8206b518d66cb5de3039802116838d23a3ab6cfe6c893e574e3e9365",
+  "cell-stats.json": "c5bd54faf98741c69db5605f0507839f122528c512ac2980ae0e7bfa1222436f",
+  "summary.csv": "e81f16c743fd781ca0370b06b74dbeb075e7cad46dcd6cc31a78bccb51fa7395",
+  "prepare.json": "fb573717698e7d0404d4e2c6078cd97d62ab215de6445194703c5148e4950419"
+ },
+ "verified_by_download": true,
+ "note": "Published from the run's own artifacts after the corrected review passed locally on those exact files; no recomputation."
+}

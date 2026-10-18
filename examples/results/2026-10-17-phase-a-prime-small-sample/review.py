@@ -85,6 +85,30 @@ def recount(manifest, data):
             "pass": not bad and len(rows) == len(want)}
 
 
+_Q = {0.05: (1, 20), 0.20: (1, 5)}
+
+
+def exact_bh_grid(row, q):
+    """BH in exact integer arithmetic for bootstrap p-values on the 1/1,000 grid.
+
+    Bootstrap p-values can sit exactly on a BH threshold q*k/m; floating-point
+    implementations may then round the comparison either way (statsmodels did, in
+    one dataset each of three cells on the first Actions run). p = j/1000 and
+    q = a/b, so p_(k) <= q*k/m  <=>  j_(k) * m * b <= a * k * 1000.
+    """
+    j = np.rint(np.asarray(row) * 1000).astype(np.int64)
+    if not np.array_equal(j / 1000, np.asarray(row)):
+        raise ValueError("bootstrap p-value off the 1/1000 grid")
+    a, b = _Q[q]
+    m = len(j)
+    js = np.sort(j)
+    ok = js * m * b <= a * np.arange(1, m + 1) * 1000
+    if not ok.any():
+        return np.zeros(m, dtype=bool)
+    kmax = int(np.nonzero(ok)[0].max()) + 1
+    return j <= js[kmax - 1]
+
+
 def recompute_stats(manifest, data):
     from statsmodels.stats.multitest import multipletests
     saved = json.loads((HERE / "cell-stats.json").read_text(encoding="utf-8"))
@@ -106,7 +130,10 @@ def recompute_stats(manifest, data):
             for q in (0.05, 0.20):
                 fdp = []
                 for row in P[:, mi, :]:
-                    rj = multipletests(row, q, "fdr_bh")[0]
+                    if m == "M8_wild_boot_hc3":
+                        rj = exact_bh_grid(row, q)
+                    else:
+                        rj = multipletests(row, q, "fdr_bh")[0]
                     fdp.append((rj & nul).sum() / max(rj.sum(), 1))
                 fdp = np.array(fdp)
                 st[q] = (fdp.mean(), fdp.std(ddof=1) / math.sqrt(R))
