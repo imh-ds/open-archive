@@ -1,0 +1,92 @@
+{
+ "cell_100.npz": {
+  "sha256": "f1da04eee1a70f20078c1afadd8af9a48520affc5305d1295eac2b2825b8aee4",
+  "bytes": 2060738,
+  "reps": 5000,
+  "seed_first": 3721000000
+ },
+ "cell_108.npz": {
+  "sha256": "cb903d36bfb036568aa0156bffd38a6475e7ddd0f6d917aad74470381a861ee2",
+  "bytes": 2060743,
+  "reps": 5000,
+  "seed_first": 3721080000
+ },
+ "cell_116.npz": {
+  "sha256": "773bcb179c3260a8954372535383644c373c2ece3b525a29524654cadeecf9bc",
+  "bytes": 2060904,
+  "reps": 5000,
+  "seed_first": 3721160000
+ },
+ "cell_138.npz": {
+  "sha256": "191f8c8c1551ea5e965a41b4a6a8de70ee4e2bf1ec5ede08fd6794418c5d896f",
+  "bytes": 2061184,
+  "reps": 5000,
+  "seed_first": 3721380000
+ },
+ "cell_142.npz": {
+  "sha256": "92697d97813d277e4ad995bc325eb57233c06d85aae4c9bba9a3c366f82c1e72",
+  "bytes": 2061044,
+  "reps": 5000,
+  "seed_first": 3721420000
+ },
+ "cell_162.npz": {
+  "sha256": "23cb30ad8b127eeb4df0715a6da3706495a5ab4380804c1272e63632ec2d4522",
+  "bytes": 2061025,
+  "reps": 5000,
+  "seed_first": 3721620000
+ },
+ "cell_166.npz": {
+  "sha256": "9d97242b07fd742d374d5c452bd7b5031c1f6a11a9f238e16081f64ba9c07c64",
+  "bytes": 2060861,
+  "reps": 5000,
+  "seed_first": 3721660000
+ },
+ "cell_186.npz": {
+  "sha256": "eee9f6a562b6a9742c99309f83275f7eadde5a5eb7992764e1e1ede2448690b2",
+  "bytes": 2060904,
+  "reps": 5000,
+  "seed_first": 3721860000
+ },
+ "cell_190.npz": {
+  "sha256": "8cb242f266a9dcf28b95d7cd597188e5ff3fe31ec576c8e289d9384292285f10",
+  "bytes": 2061110,
+  "reps": 5000,
+  "seed_first": 3721900000
+ },
+ "cell_202.npz": {
+  "sha256": "171d79490788021514e3f63d0e866405b7e47733d7e5369c7ad7317ca5d711cc",
+  "bytes": 2060909,
+  "reps": 5000,
+  "seed_first": 3722020000
+ },
+ "cell_214.npz": {
+  "sha256": "b6d43a73c26bcaf3515fc6c9a4a97bb2a624a1c351047f149f91f594d487fe03",
+  "bytes": 2060884,
+  "reps": 5000,
+  "seed_first": 3722140000
+ },
+ "cell_226.npz": {
+  "sha256": "2fba422a6cb468e11d2460fa98ae850b24210552cc2ee2a01d82ab8d617b978d",
+  "bytes": 2060531,
+  "reps": 5000,
+  "seed_first": 3722260000
+ },
+ "cell_238.npz": {
+  "sha256": "fe11aeb46dc6abed111629f1fb25c5163367a25b35d464951c20214895ce97f9",
+  "bytes": 2061522,
+  "reps": 5000,
+  "seed_first": 3722380000
+ },
+ "cell_240.npz": {
+  "sha256": "713926a1aaac1430c749ccf491617104d936918f7d47c4c8d576ca48d0fbf007",
+  "bytes": 820880,
+  "reps": 5000,
+  "seed_first": 3722400000
+ },
+ "cell_260.npz": {
+  "sha256": "7a711f34560a8c430adc9af84b64349b5bf2382c6530d7af10440831e6d2620b",
+  "bytes": 3091539,
+  "reps": 5000,
+  "seed_first": 3722600000
+ }
+}

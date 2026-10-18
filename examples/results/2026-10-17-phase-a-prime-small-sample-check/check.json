@@ -1,0 +1,175 @@
+{
+ "schema": "open.phase_a_prime_small_sample.v1.check",
+ "environment": {
+  "python": "3.11.9",
+  "numpy": "1.26.4",
+  "scipy": "1.11.2",
+  "statsmodels": "0.14.4",
+  "python_matches_pin": true,
+  "phase_a_source_verified": true
+ },
+ "grid": {
+  "cells": 268,
+  "criterion_cells": 244,
+  "null_cells": 104,
+  "signal_cells": 164,
+  "datasets": 684000,
+  "by_family": {
+   "primary": 120,
+   "robustness": 72,
+   "leverage": 48,
+   "bridge": 4,
+   "stress": 24
+  },
+  "seed_range": [
+   3720000000,
+   3722670999
+  ]
+ },
+ "manifest": {
+  "sha256": "044bf3863d3e60d2bc8bd2899d4c83b245ed0f50f8b98da6913f452174d8cb01",
+  "deterministic": true,
+  "source_sha256": "8329c91ee91460460e0787551dfdd3bdf9953e6e59a697e016f4d335642c984b",
+  "pass": true
+ },
+ "estimators": {
+  "fixtures": 200,
+  "fixture_cells": [
+   22,
+   24,
+   126,
+   177,
+   230,
+   193,
+   251
+  ],
+  "max_diffs": {
+   "M1_p": 1.176836406102666e-14,
+   "M2_p": 1.176836406102666e-14,
+   "D_hc2_p": 1.199040866595169e-14,
+   "HC4_t_rel": 1.2656542480726785e-14,
+   "HC5_t_rel": 2.6645352591003757e-15
+  },
+  "constant_leverage": {
+   "leverage_range": 0.0,
+   "hc4_equals_hc2_rel": 5.10702591327572e-15,
+   "hc5_equals_hc0_over_sqrt_1mh_rel": 4.6629367034256575e-15
+  },
+  "tolerance": "p 1e-10 abs vs statsmodels; HC4/HC5 t 1e-12 rel vs loop and properties",
+  "pass": true
+ },
+ "bootstrap_brute_force": {
+  "fixtures": 20,
+  "max_abs_p_diff": 0.0,
+  "tolerance": 1e-10,
+  "note": "brute force refits statsmodels HC3 for each of 999 replicates with identical weights",
+  "pass": true
+ },
+ "generation_identity_with_phase_a": {
+  "cells_checked": 32,
+  "max_abs_diff": 0.0,
+  "pass": true
+ },
+ "leverage_population": {
+  "rows_per_draw": 1000000,
+  "designs": [
+   {
+    "lognormal_shape": 0.5,
+    "p": 4,
+    "realized_partial_corr_X1": 0.20545395414283163,
+    "target_gaussian_rho": 0.2,
+    "max_null_partial_corr": 0.0018790743813111212,
+    "var_T": 0.9991903456198723,
+    "skewness_X1": 1.7410600230270175,
+    "median_max_leverage_ratio_n100": 4.937293877803812,
+    "pass": true
+   },
+   {
+    "lognormal_shape": 0.5,
+    "p": 10,
+    "realized_partial_corr_X1": 0.20653195705067662,
+    "target_gaussian_rho": 0.2,
+    "max_null_partial_corr": 0.0016644335804222186,
+    "var_T": 1.000749743846826,
+    "skewness_X1": 1.737079576206211,
+    "median_max_leverage_ratio_n100": 2.796074194693878,
+    "pass": true
+   },
+   {
+    "lognormal_shape": 0.8,
+    "p": 4,
+    "realized_partial_corr_X1": 0.21687827095835727,
+    "target_gaussian_rho": 0.2,
+    "max_null_partial_corr": 0.002368623109080359,
+    "var_T": 1.0002439191324353,
+    "skewness_X1": 3.7116655288916074,
+    "median_max_leverage_ratio_n100": 7.221652449382176,
+    "pass": true
+   },
+   {
+    "lognormal_shape": 0.8,
+    "p": 10,
+    "realized_partial_corr_X1": 0.2175637370415223,
+    "target_gaussian_rho": 0.2,
+    "max_null_partial_corr": 0.002603178976887492,
+    "var_T": 1.0007323853960415,
+    "skewness_X1": 3.6677594237754416,
+    "median_max_leverage_ratio_n100": 3.6907332525205883,
+    "pass": true
+   }
+  ],
+  "pass": true
+ },
+ "run_guard": {
+  "refuses_existing_output": true,
+  "pass": true
+ },
+ "smoke_run": {
+  "cells": [
+   20,
+   58,
+   228,
+   244
+  ],
+  "reps_each": 60,
+  "seconds": 1.75,
+  "npz_files": [
+   "cell_020.npz",
+   "cell_058.npz",
+   "cell_228.npz",
+   "cell_244.npz"
+  ],
+  "outputs_written": true,
+  "selection_exercised": {
+   "winner": "M7_hc5_t",
+   "supported_min_n": 275,
+   "applies": "all N",
+   "tied_within_01": [
+    "M7_hc5_t"
+   ],
+   "outcome": "SCOPED: supported from N >= 275"
+  },
+  "note": "fixture seeds; pipeline smoke test only, not evidence",
+  "pass": true
+ },
+ "runtime_projection": {
+  "cpu_seconds_estimate": 13174.6,
+  "workers": 16,
+  "wall_minutes_estimate": 13.7,
+  "datasets": 684000,
+  "split_into_two_batches": false
+ },
+ "seed_audit": {
+  "checked_range": [
+   3720000000,
+   3739999999
+  ],
+  "files_scanned": 2328,
+  "skipped": [],
+  "overlaps": [],
+  "includes_phase_a_outputs": true,
+  "pass": true
+ },
+ "all_pass": true,
+ "seconds": 30.9
+}

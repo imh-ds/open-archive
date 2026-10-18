@@ -1,0 +1,304 @@
+{
+ "schema": "open.phase_a_linear_reference.v1.check",
+ "environment": {
+  "python": "3.11.9",
+  "numpy": "1.26.4",
+  "scipy": "1.11.2",
+  "statsmodels": "0.14.4",
+  "pinned_python": "3.11.9",
+  "python_matches_pin": true
+ },
+ "grid": {
+  "cells": 272,
+  "null_cells": 95,
+  "signal_cells": 177,
+  "datasets": 652000,
+  "by_family": {
+   "primary": 144,
+   "robustness": 60,
+   "coarsened_target": 12,
+   "group": 20,
+   "likert_predictors": 24,
+   "missing_mcar": 12
+  },
+  "seed_range": [
+   3700000000,
+   3702710999
+  ]
+ },
+ "manifest": {
+  "sha256": "cd2f459b1bbeb4618fb4ee89403ee362ffa2d1d6c298f39a1a14c6191695c107",
+  "deterministic": true,
+  "source_sha256": "d621a6e55bb4697296bb7c29f8f8dd61faba3a1709dccd7c19aa6c0657128bba",
+  "pass": true
+ },
+ "statsmodels_agreement": {
+  "fixtures": 200,
+  "fixture_cells": [
+   23,
+   32,
+   147,
+   188,
+   211,
+   219,
+   237,
+   262,
+   263
+  ],
+  "max_abs_p_diff": {
+   "p1": 1.6764367671839864e-14,
+   "p2": 1.454392162258955e-14,
+   "p5": 2.203098814490545e-16
+  },
+  "max_rel_stat_diff": {
+   "t1_rel": 3.1463720517876936e-13,
+   "t2_rel": 3.1386004906153175e-13,
+   "F5_rel": 2.55351295663786e-15
+  },
+  "tolerance": "p-values 1e-10 absolute; statistics 1e-9 relative",
+  "pass": true
+ },
+ "gcm_identities": {
+  "fwl_max_rel_diff": 5.10480546722647e-13,
+  "fold_partition_balanced": true,
+  "seed_reproducible": true,
+  "note": "M3 is verified through the Frisch-Waugh-Lovell identity sum(eT*eX)/sum(eX^2) = OLS coefficient; GCM's Z is not algebraically equal to the classical t (protocol \u00a75 item 2 wording corrected)",
+  "pass": true
+ },
+ "population": {
+  "rows_per_draw": 1000000,
+  "designs": [
+   {
+    "cell_index": 123,
+    "family": "primary",
+    "structure": "S1",
+    "p": 4,
+    "error": "gaussian",
+    "rho": 0.2,
+    "max_partial_corr_dev": 0.0002668754045963527,
+    "var_T_dev": -0.00030687643425275635,
+    "var_tol": 0.005651737245340669,
+    "pass": true
+   },
+   {
+    "cell_index": 127,
+    "family": "primary",
+    "structure": "S1",
+    "p": 10,
+    "error": "gaussian",
+    "rho": 0.2,
+    "max_partial_corr_dev": 0.0013584667202051197,
+    "var_T_dev": -0.0038720953926928425,
+    "var_tol": 0.005652515643953784,
+    "pass": true
+   },
+   {
+    "cell_index": 131,
+    "family": "primary",
+    "structure": "S2",
+    "p": 4,
+    "error": "gaussian",
+    "rho": 0.2,
+    "max_partial_corr_dev": 0.001951877275002012,
+    "var_T_dev": -0.0006297503917513936,
+    "var_tol": 0.00565202668694166,
+    "pass": true
+   },
+   {
+    "cell_index": 135,
+    "family": "primary",
+    "structure": "S2",
+    "p": 10,
+    "error": "gaussian",
+    "rho": 0.2,
+    "max_partial_corr_dev": 0.0016966139765169736,
+    "var_T_dev": -0.0009730530913545365,
+    "var_tol": 0.00565104815832835,
+    "pass": true
+   },
+   {
+    "cell_index": 139,
+    "family": "primary",
+    "structure": "S3",
+    "p": 4,
+    "error": "gaussian",
+    "rho": 0.2,
+    "max_partial_corr_dev": 0.0020040241733108866,
+    "var_T_dev": -3.6384953206458626e-05,
+    "var_tol": 0.005657370220229049,
+    "pass": true
+   },
+   {
+    "cell_index": 143,
+    "family": "primary",
+    "structure": "S3",
+    "p": 10,
+    "error": "gaussian",
+    "rho": 0.2,
+    "max_partial_corr_dev": 0.0016852550156781832,
+    "var_T_dev": 0.002242183728950131,
+    "var_tol": 0.005655504645731818,
+    "pass": true
+   },
+   {
+    "cell_index": 163,
+    "family": "robustness",
+    "structure": "S3",
+    "p": 4,
+    "error": "heteroskedastic",
+    "rho": 0.1,
+    "max_partial_corr_dev": 0.002040021670908084,
+    "var_T_dev": -0.0005205360119722169,
+    "var_tol": 0.007880789979818488,
+    "pass": true
+   },
+   {
+    "cell_index": 183,
+    "family": "robustness",
+    "structure": "S3",
+    "p": 4,
+    "error": "skewed",
+    "rho": 0.1,
+    "max_partial_corr_dev": 0.001015368864133776,
+    "var_T_dev": -0.0005955464563743851,
+    "var_tol": 0.009691810191865012,
+    "pass": true
+   },
+   {
+    "cell_index": 203,
+    "family": "robustness",
+    "structure": "S3",
+    "p": 4,
+    "error": "heavy_tailed",
+    "rho": 0.1,
+    "max_partial_corr_dev": 0.001904224106635613,
+    "var_T_dev": 0.003022628573336128,
+    "var_tol": 0.01122587366498492,
+    "pass": true
+   },
+   {
+    "cell_index": 235,
+    "family": "group",
+    "r2": 0.02008286940188908,
+    "eta2": 0.02,
+    "dev": 8.286940188908035e-05,
+    "pass": true
+   },
+   {
+    "family": "likert_thresholds",
+    "thresholds": "symmetric",
+    "proportions": [
+     0.0674,
+     0.2415,
+     0.383,
+     0.2413,
+     0.0667
+    ],
+    "expected": [
+     0.0668,
+     0.2417,
+     0.3829,
+     0.2417,
+     0.0668
+    ],
+    "pass": true
+   },
+   {
+    "family": "likert_thresholds",
+    "thresholds": "skewed",
+    "proportions": [
+     0.0229,
+     0.0744,
+     0.2125,
+     0.3461,
+     0.344
+    ],
+    "expected": [
+     0.0228,
+     0.0741,
+     0.2117,
+     0.3469,
+     0.3446
+    ],
+    "pass": true
+   }
+  ],
+  "tolerance": "max(.003, 4 Monte Carlo SE): protocol stated a flat \u00b1.003; the heavy-tailed variance has SE \u2248 .003 at 10^6 rows, so a flat bound would fail by chance",
+  "pass": true
+ },
+ "run_guard": {
+  "refuses_existing_output": true,
+  "pass": true
+ },
+ "smoke_run": {
+  "cells": [
+   40,
+   86,
+   222,
+   164
+  ],
+  "reps_each": 60,
+  "seconds": 1.61,
+  "npz_files": [
+   "cell_040.npz",
+   "cell_086.npz",
+   "cell_164.npz",
+   "cell_222.npz"
+  ],
+  "summary_rows": 88,
+  "outputs_written": true,
+  "subset_verdict_exercised": "SCOPED",
+  "example_rates_M2": {
+   "40": [
+    0.0,
+    0.083,
+    0.05,
+    0.017
+   ],
+   "86": [
+    0.65,
+    0.0,
+    0.017,
+    0.067,
+    0.083,
+    0.033,
+    0.033,
+    0.033,
+    0.017,
+    0.05
+   ],
+   "222": [
+    0.117,
+    0.067,
+    0.1,
+    0.017
+   ],
+   "164": [
+    0.067,
+    0.033,
+    0.0,
+    0.1
+   ]
+  },
+  "note": "fixture seeds; pipeline smoke test only, not evidence",
+  "pass": true
+ },
+ "runtime_projection": {
+  "cpu_seconds_estimate": 8677.3,
+  "workers": 16,
+  "wall_minutes_estimate": 9.0,
+  "datasets": 652000
+ },
+ "seed_audit": {
+  "checked_range": [
+   3700000000,
+   3719999999
+  ],
+  "files_scanned": 2318,
+  "skipped": [],
+  "overlaps": [],
+  "pass": true
+ },
+ "all_pass": true,
+ "seconds": 33.3
+}

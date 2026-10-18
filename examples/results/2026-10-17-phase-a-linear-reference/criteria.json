@@ -1,0 +1,70 @@
+{
+ "A1": {
+  "K": 900,
+  "Q99": 17,
+  "outside_band": 51,
+  "outside_hard": 4,
+  "pass": false,
+  "scope_min_n": 385
+ },
+ "A2": {
+  "failures": [
+   {
+    "cell_index": 7,
+    "observed": 0.417,
+    "analytic": 0.47810242243402123,
+    "tol": 0.05068836063836193
+   },
+   {
+    "cell_index": 15,
+    "observed": 0.419,
+    "analytic": 0.47810242243402123,
+    "tol": 0.05068836063836193
+   },
+   {
+    "cell_index": 23,
+    "observed": 0.424,
+    "analytic": 0.47810242243402123,
+    "tol": 0.05068836063836193
+   }
+  ],
+  "pass": false
+ },
+ "A3": {
+  "K": 154,
+  "Q99": 5,
+  "outside_band": 0,
+  "outside_hard": 0,
+  "pass": true,
+  "small_n_entries": 98,
+  "small_n_pass": true,
+  "scope_min_n": 100
+ },
+ "A4": {
+  "failures": [],
+  "pass": true
+ },
+ "A5": {
+  "calibration": {
+   "K": 5,
+   "Q99": 1,
+   "outside_band": 0,
+   "outside_hard": 0,
+   "pass": true
+  },
+  "power_failures": [],
+  "fwer_failures": [],
+  "pass": true
+ },
+ "A6": {
+  "K": 900,
+  "Q99": 17,
+  "outside_band": 225,
+  "outside_hard": 130,
+  "pass": false,
+  "power_losses": [],
+  "scope_min_n": 1000
+ },
+ "verdict": "FAIL",
+ "supported_min_n": 1000
+}
