@@ -1,0 +1,508 @@
+{
+ "schema": "open.phase_b_local_detector.v1.check",
+ "environment": {
+  "python": "3.11.9",
+  "numpy": "1.26.4",
+  "scipy": "1.11.2",
+  "statsmodels": "0.14.4",
+  "scikit-learn": "1.3.0",
+  "lightgbm": "4.6.0",
+  "pins_match": true
+ },
+ "grid": {
+  "cells": 78,
+  "datasets": 56500,
+  "by_family": {
+   "main": 36,
+   "small": 22,
+   "screen": 20
+  },
+  "datasets_by_family": {
+   "main": 16500,
+   "small": 10000,
+   "screen": 30000
+  },
+  "seed_range": [
+   3740000000,
+   3740770999
+  ],
+  "coefficients": [
+   {
+    "shape": "L",
+    "p": 5,
+    "r": 0.05,
+    "beta": 0.06439445827302308,
+    "sigma2": 0.9958533537437239,
+    "V": 0.6019016122364614
+   },
+   {
+    "shape": "L",
+    "p": 5,
+    "r": 0.1,
+    "beta": 0.12847119422133463,
+    "sigma2": 0.9834951522553441,
+    "V": 0.6019016122364614
+   },
+   {
+    "shape": "Mo",
+    "p": 5,
+    "r": 0.05,
+    "beta": 0.0622202306377955,
+    "sigma2": 0.9961286428993795,
+    "V": 0.6448805806070659
+   },
+   {
+    "shape": "Mo",
+    "p": 5,
+    "r": 0.1,
+    "beta": 0.1241846323411022,
+    "sigma2": 0.9845781770903053,
+    "V": 0.6448805806070659
+   },
+   {
+    "shape": "U",
+    "p": 5,
+    "r": 0.05,
+    "beta": 0.05449242934216987,
+    "sigma2": 0.9970305751443886,
+    "V": 0.8415176736600714
+   },
+   {
+    "shape": "U",
+    "p": 5,
+    "r": 0.1,
+    "beta": 0.10890800741506189,
+    "sigma2": 0.9881390459208809,
+    "V": 0.8415176736600714
+   },
+   {
+    "shape": "I",
+    "p": 5,
+    "r": 0.05,
+    "beta": 0.06439445827302308,
+    "sigma2": 0.9958533537437239,
+    "V": 0.6019016122364614
+   },
+   {
+    "shape": "I",
+    "p": 5,
+    "r": 0.1,
+    "beta": 0.12847119422133463,
+    "sigma2": 0.9834951522553441,
+    "V": 0.6019016122364614
+   },
+   {
+    "shape": "E",
+    "p": 5,
+    "r": 0.05,
+    "beta": 0.06439445827302308,
+    "sigma2": 0.9958533537437239,
+    "V": 0.6019016122364614
+   },
+   {
+    "shape": "E",
+    "p": 5,
+    "r": 0.1,
+    "beta": 0.12847119422133463,
+    "sigma2": 0.9834951522553441,
+    "V": 0.6019016122364614
+   }
+  ]
+ },
+ "manifest": {
+  "sha256": "73aef5e6ca31a963a7a3d9af2cdd869e15448c0f0074c85e97472fa08b04febd",
+  "deterministic": true,
+  "source_sha256": "7f2da249796593144ba51d17b99cfc860e393b79060e726c81fb8115e1165af6",
+  "pass": true
+ },
+ "hc4_identity_with_phase_a_prime": {
+  "fixtures": 200,
+  "max_abs_p_diff": 0.0,
+  "tolerance": 1e-12,
+  "pass": true
+ },
+ "gcm_identity_with_phase_a": {
+  "fixtures": 60,
+  "reference": "Phase A gcm_crossfit (M4)",
+  "max_abs_p_diff": 0.0,
+  "tolerance": 1e-10,
+  "pass": true
+ },
+ "population": {
+  "rows_per_draw": 1000000,
+  "designs": [
+   {
+    "shape": "L",
+    "r_target": 0.1,
+    "error": "gaussian",
+    "realized_r": 0.09989351043138371,
+    "observed_linear_partial_X1": 0.09804034163599162,
+    "null_linear_partials": {
+     "X0": 0.0020919286002488856,
+     "Z1": 0.0011137361393054792,
+     "Z2": 0.001340061062529198,
+     "M": 0.002033411233679184
+    },
+    "var_T": 1.000595165848306,
+    "pass": true
+   },
+   {
+    "shape": "Mo",
+    "r_target": 0.1,
+    "error": "gaussian",
+    "realized_r": 0.10001020027992288,
+    "observed_linear_partial_X1": 0.08874743074286275,
+    "null_linear_partials": {
+     "X0": -0.0002484069536976883,
+     "Z1": 0.0025808766266860214,
+     "Z2": 0.00043731669097206156,
+     "M": -0.0013097489006281648
+    },
+    "var_T": 0.9995545018375737,
+    "pass": true
+   },
+   {
+    "shape": "U",
+    "r_target": 0.1,
+    "error": "gaussian",
+    "realized_r": 0.09996742894583614,
+    "observed_linear_partial_X1": -0.0026441865189399095,
+    "null_linear_partials": {
+     "X0": 0.0019820641003152157,
+     "Z1": 0.0029946857673231824,
+     "Z2": 0.0004206261418661696,
+     "M": -0.00041063068389952126
+    },
+    "var_T": 1.000373468487781,
+    "pass": true
+   },
+   {
+    "shape": "I",
+    "r_target": 0.1,
+    "error": "gaussian",
+    "realized_r": 0.09998175585642528,
+    "observed_linear_partial_X1": -0.0006368957458219,
+    "null_linear_partials": {
+     "X0": 0.0014453662585373994,
+     "Z1": -0.000754171666396896,
+     "Z2": -0.0007215134281155087
+    },
+    "var_T": 0.9992185732133568,
+    "pass": true,
+    "moderator_partial_ratio_target": 0.12847119422133463,
+    "moderator_linear_partial": 0.0014149063115104113
+   },
+   {
+    "shape": "E",
+    "r_target": 0.1,
+    "error": "gaussian",
+    "realized_r": 0.09990317397884745,
+    "observed_linear_partial_X1": 0.08347492582582597,
+    "null_linear_partials": {
+     "Z2": 0.0014672611561674365,
+     "M": -9.697885383441721e-05
+    },
+    "var_T": 0.9971107321853057,
+    "pass": true,
+    "measurement_leakage_partials": {
+     "X0": 0.006555843123939442,
+     "Z1": 0.017917352150412152
+    }
+   },
+   {
+    "shape": "L",
+    "r_target": 0.0,
+    "error": "heteroskedastic",
+    "realized_r": 0.0,
+    "observed_linear_partial_X1": 0.00111888675404745,
+    "null_linear_partials": {
+     "X1": 0.00111888675404745,
+     "X0": -0.0017853442586929177,
+     "Z1": 0.00024243510793414797,
+     "Z2": 0.0013644113370713422,
+     "M": 0.0013062739831619832
+    },
+    "var_T": 0.9975167925124641,
+    "pass": true
+   }
+  ],
+  "note": "realized r uses the analytic E[s | C-1]; nulls checked by linear partial correlation (|pc| <= 4/sqrt(n)); nulls are exact by construction for every shape",
+  "pass": true
+ },
+ "run_guard": {
+  "refuses_existing_output": true,
+  "pass": true
+ },
+ "seed_audit": {
+  "checked_range": [
+   3740000000,
+   3759999999
+  ],
+  "files_scanned": 1744,
+  "skipped": [],
+  "overlaps": [],
+  "includes_phase_a_outputs": true,
+  "includes_phase_a_prime_outputs": true,
+  "pass": true
+ },
+ "determinism": {
+  "fixtures": 2,
+  "separate_process_pools": 2,
+  "identical_bytes": true,
+  "pass": true
+ },
+ "smoke_run": {
+  "cells": [
+   0,
+   7,
+   1,
+   44,
+   47,
+   60
+  ],
+  "reps_each": 20,
+  "seconds": 2251.0,
+  "chunk_files": 24,
+  "criteria_exercised": {
+   "c1_main": true,
+   "c4_main": true,
+   "c1_small_g2": true,
+   "screen_c1": true,
+   "paired": [
+    0.15,
+    0.08191780219091253
+   ]
+  },
+  "engine_rounds": {
+   "0": {
+    "F1": {
+     "fits": 3240.0,
+     "mean_rounds": 100.0,
+     "share_capped": 0.0
+    },
+    "F2": {
+     "fits": 3240.0,
+     "mean_rounds": 41.21635802469136,
+     "share_capped": 0.0
+    },
+    "F3": {
+     "fits": 3240.0,
+     "mean_rounds": 34.116975308641976,
+     "share_capped": 0.0
+    },
+    "F4": {
+     "fits": 3240.0,
+     "mean_rounds": 34.133024691358024,
+     "share_capped": 0.00030864197530864197
+    }
+   },
+   "7": {
+    "F1": {
+     "fits": 3240.0,
+     "mean_rounds": 100.0,
+     "share_capped": 0.0
+    },
+    "F2": {
+     "fits": 3240.0,
+     "mean_rounds": 42.989814814814814,
+     "share_capped": 0.0
+    },
+    "F3": {
+     "fits": 3240.0,
+     "mean_rounds": 31.94567901234568,
+     "share_capped": 0.0
+    },
+    "F4": {
+     "fits": 3240.0,
+     "mean_rounds": 32.01141975308642,
+     "share_capped": 0.0
+    }
+   },
+   "1": {
+    "F1": {
+     "fits": 3240.0,
+     "mean_rounds": 100.0,
+     "share_capped": 0.0
+    },
+    "F2": {
+     "fits": 3240.0,
+     "mean_rounds": 44.16728395061728,
+     "share_capped": 0.0
+    },
+    "F3": {
+     "fits": 3240.0,
+     "mean_rounds": 34.75555555555555,
+     "share_capped": 0.0
+    },
+    "F4": {
+     "fits": 3240.0,
+     "mean_rounds": 36.95246913580247,
+     "share_capped": 0.0
+    }
+   },
+   "44": {
+    "F1": {
+     "fits": 9480.0,
+     "mean_rounds": 100.0,
+     "share_capped": 0.0
+    },
+    "F2": {
+     "fits": 9480.0,
+     "mean_rounds": 44.78333333333333,
+     "share_capped": 0.0
+    },
+    "F3": {
+     "fits": 9480.0,
+     "mean_rounds": 57.20611814345992,
+     "share_capped": 0.0005274261603375527
+    },
+    "F4": {
+     "fits": 9480.0,
+     "mean_rounds": 45.62795358649789,
+     "share_capped": 0.0002109704641350211
+    }
+   },
+   "47": {
+    "F1": {
+     "fits": 9480.0,
+     "mean_rounds": 100.0,
+     "share_capped": 0.0
+    },
+    "F2": {
+     "fits": 9480.0,
+     "mean_rounds": 41.29345991561181,
+     "share_capped": 0.0
+    },
+    "F3": {
+     "fits": 9480.0,
+     "mean_rounds": 39.699050632911394,
+     "share_capped": 0.00031645569620253165
+    },
+    "F4": {
+     "fits": 9480.0,
+     "mean_rounds": 33.503270042194096,
+     "share_capped": 0.00031645569620253165
+    }
+   }
+  },
+  "note": "fixture seeds; pipeline smoke test only, not evidence. The full evaluate() needs every cell and is exercised by the review on real output.",
+  "pass": true
+ },
+ "runtime_projection": {
+  "seconds_per_dataset": {
+   "main_n1000_p5": 70.37,
+   "main_n2000_p5": 123.77,
+   "main_n5000_p5": 237.77,
+   "small_n300_p5": 105.39,
+   "small_n500_p5": 97.0,
+   "screen_n100_p5": 0.02,
+   "screen_n100_p10": 0.05,
+   "screen_n200_p5": 0.02,
+   "screen_n200_p10": 0.05,
+   "screen_n300_p5": 0.02,
+   "screen_n300_p10": 0.05,
+   "screen_n500_p5": 0.02,
+   "screen_n500_p10": 0.06,
+   "screen_n1000_p5": 0.03,
+   "screen_n1000_p10": 0.09
+  },
+  "cpu_seconds_estimate": 3388742,
+  "local_wall_hours_at_workers": 235.3,
+  "workers": 4,
+  "datasets": 56500,
+  "actions_runner_minutes_rough": 21180,
+  "note": "single dataset per (family, N, p) on this machine; Actions figure assumes 4 workers per runner and a 1.5x slowdown. Stage B0 replaces this."
+ },
+ "loop_cross_checks": {
+  "fixtures_per_engine": 20,
+  "n": 300,
+  "K": [
+   5,
+   10
+  ],
+  "statistics": "GCM g0/g1/g2 and PCM g0/g1/g2 p-values",
+  "tolerance": 1e-10,
+  "pass": true,
+  "max_abs_p_diff": {
+   "ols": 4.440892098500626e-16,
+   "F1": 4.440892098500626e-16,
+   "F2": 4.440892098500626e-16,
+   "F3": 4.440892098500626e-16,
+   "F4": 4.440892098500626e-16
+  },
+  "engines": [
+   "F1",
+   "F2",
+   "F3",
+   "F4",
+   "ols"
+  ]
+ },
+ "parts": {
+  "core": {
+   "name": "core",
+   "seconds": 13.0,
+   "workers": 4,
+   "source_sha256": "7f2da249796593144ba51d17b99cfc860e393b79060e726c81fb8115e1165af6",
+   "platform": "Windows-10-10.0.20348-SP0"
+  },
+  "loops_ols": {
+   "name": "loops_ols",
+   "seconds": 2.9,
+   "workers": 4,
+   "source_sha256": "7f2da249796593144ba51d17b99cfc860e393b79060e726c81fb8115e1165af6",
+   "platform": "Windows-10-10.0.20348-SP0"
+  },
+  "loops_F1": {
+   "name": "loops_F1",
+   "seconds": 730.5,
+   "workers": 4,
+   "source_sha256": "7f2da249796593144ba51d17b99cfc860e393b79060e726c81fb8115e1165af6",
+   "platform": "Windows-10-10.0.20348-SP0"
+  },
+  "loops_F2": {
+   "name": "loops_F2",
+   "seconds": 253.8,
+   "workers": 4,
+   "source_sha256": "7f2da249796593144ba51d17b99cfc860e393b79060e726c81fb8115e1165af6",
+   "platform": "Windows-10-10.0.20348-SP0"
+  },
+  "loops_F3": {
+   "name": "loops_F3",
+   "seconds": 92.0,
+   "workers": 4,
+   "source_sha256": "7f2da249796593144ba51d17b99cfc860e393b79060e726c81fb8115e1165af6",
+   "platform": "Windows-10-10.0.20348-SP0"
+  },
+  "loops_F4": {
+   "name": "loops_F4",
+   "seconds": 81.2,
+   "workers": 4,
+   "source_sha256": "7f2da249796593144ba51d17b99cfc860e393b79060e726c81fb8115e1165af6",
+   "platform": "Windows-10-10.0.20348-SP0"
+  },
+  "determinism": {
+   "name": "determinism",
+   "seconds": 145.8,
+   "workers": 4,
+   "source_sha256": "7f2da249796593144ba51d17b99cfc860e393b79060e726c81fb8115e1165af6",
+   "platform": "Windows-10-10.0.20348-SP0"
+  },
+  "smoke": {
+   "name": "smoke",
+   "seconds": 2251.1,
+   "workers": 4,
+   "source_sha256": "7f2da249796593144ba51d17b99cfc860e393b79060e726c81fb8115e1165af6",
+   "platform": "Windows-10-10.0.20348-SP0"
+  },
+  "runtime": {
+   "name": "runtime",
+   "seconds": 319.1,
+   "workers": 4,
+   "source_sha256": "7f2da249796593144ba51d17b99cfc860e393b79060e726c81fb8115e1165af6",
+   "platform": "Windows-10-10.0.20348-SP0"
+  }
+ },
+ "parts_same_source": true,
+ "all_pass": true
+}
