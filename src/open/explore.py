@@ -1,5 +1,7 @@
 """Exploratory mode: depth-by-depth recursion with fold-level noise tests.
 
+See explore_report for tables and the graph.
+
 The rows are split into K folds once. For each target at a depth, every fold
 fits the engine on the other K - 1 folds with the candidates plus one noise
 column per candidate (a row-shuffled copy, unrelated to anything). On the
@@ -47,6 +49,8 @@ class ExploreConfig:
     tuning_folds: int = 3
     dependence_pair: float = 0.70
     noise_groups: int = 10
+    interactions: bool = True
+    max_interaction_pairs: int = 100
     max_depth: int | None = None
     seed: int = 0
 
@@ -63,6 +67,8 @@ class ExploreConfig:
             raise ValueError("dependence_pair must be in [0, 1]")
         if type(self.noise_groups) is not int or self.noise_groups < 1:
             raise ValueError("noise_groups must be a positive integer")
+        if type(self.max_interaction_pairs) is not int or self.max_interaction_pairs < 0:
+            raise ValueError("max_interaction_pairs must be a nonnegative integer")
         if self.max_depth is not None and (type(self.max_depth) is not int or self.max_depth < 1):
             raise ValueError("max_depth must be None or a positive integer")
         if type(self.seed) is not int or not 0 <= self.seed < 2**32:
@@ -72,7 +78,8 @@ class ExploreConfig:
 @dataclass(frozen=True)
 class ExploreResult:
     nodes: pd.DataFrame     # variable, depth, parents
-    links: pd.DataFrame     # one row per (target, source) unique or group relation
+    links: pd.DataFrame     # one row per unique, shared-group or interaction relation
+    pairs: pd.DataFrame     # dependence-pair classes (C4)
     folds: pd.DataFrame     # every fold-level contrast, real and noise
     bars: pd.DataFrame      # noise bar per target and contrast
     stops: dict
@@ -89,8 +96,16 @@ class ExploreResult:
             for _, r in group.iterrows():
                 style = "solid " if r.tier == "kept" else "dotted"
                 ratio = "" if pd.isna(r.x_noise) else f", {r.x_noise:.1f}x noise"
+                what = "R2 gained" if r.kind == "interaction" else "R2 lost"
                 lines.append(f"  [{style}] {r.source} -> {r.target}  ({r.kind}) passed {r.pass_rate:.0%}, "
-                             f"R2 lost {r.r2_median:.4f}{ratio}")
+                             f"{what} {r.r2_median:.4f}{ratio}")
+        flagged_pairs = self.pairs[self.pairs.tier != "dropped"]
+        if len(flagged_pairs):
+            lines.append("Correlated pairs:")
+            for _, r in flagged_pairs.iterrows():
+                extra = f" ({r.screened_member} screened by {r.screened_by})" if isinstance(r.screened_member, str) else ""
+                lines.append(f"  {r.a} ~ {r.b} -> {r.target}: {r.relation} in {r.rate:.0%} of folds "
+                             f"[{r.tier}]{extra}")
         if shown.empty:
             lines.append("No link reached the flagged tier.")
         return "\n".join(lines)
@@ -118,15 +133,17 @@ def _sub_seed(seed: int, *parts) -> int:
     return int.from_bytes(hashlib.sha256(text.encode()).digest()[:4], "big")
 
 
-def _components(data: pd.DataFrame, candidates: tuple[str, ...], tau: float) -> tuple[tuple[str, ...], ...]:
-    """Connected components (size >= 2) of candidate pairs with |Spearman| >= tau.
+def _dependence(data: pd.DataFrame, candidates: tuple[str, ...], tau: float):
+    """Candidate pairs with |Spearman| >= tau, and their connected components (size >= 2).
 
     Uses predictor columns only, never the target.
     """
     if len(candidates) < 2:
-        return ()
-    edges = [(p.a, p.b) for p in score_dependence(data[list(candidates)], candidates, tau_dep=tau)
-             if p.candidate]
+        return (), ()
+    order = {c: i for i, c in enumerate(candidates)}
+    edges = tuple(sorted(((*sorted((p.a, p.b), key=order.get), p.score)
+                          for p in score_dependence(data[list(candidates)], candidates, tau_dep=tau)
+                          if p.candidate), key=lambda e: (order[e[0]], order[e[1]])))
     parent = {c: c for c in candidates}
 
     def root(x):
@@ -135,14 +152,14 @@ def _components(data: pd.DataFrame, candidates: tuple[str, ...], tau: float) -> 
             x = parent[x]
         return x
 
-    for a, b in edges:
+    for a, b, _ in edges:
         parent[root(a)] = root(b)
     groups = {}
     for c in candidates:
         groups.setdefault(root(c), []).append(c)
-    order = {c: i for i, c in enumerate(candidates)}
-    return tuple(sorted((tuple(sorted(g, key=order.get)) for g in groups.values() if len(g) > 1),
-                        key=lambda g: order[g[0]]))
+    components = tuple(sorted((tuple(sorted(g, key=order.get)) for g in groups.values() if len(g) > 1),
+                              key=lambda g: order[g[0]]))
+    return edges, components
 
 
 def _risk(model: Predictor, params, Xtr, ytr, Xte, yte, columns) -> float:
@@ -156,27 +173,133 @@ def _risk(model: Predictor, params, Xtr, ytr, Xte, yte, columns) -> float:
     return float(np.mean((yte - pred) ** 2))
 
 
+def _apply_bars(folds: pd.DataFrame, q: float) -> pd.DataFrame:
+    folds = folds.copy()
+    bars = folds[folds.noise].groupby("contrast").value.quantile(q, interpolation="linear")
+    folds["bar"] = folds.contrast.map(bars)
+    folds["passed"] = folds.value > folds.bar
+    return folds
+
+
+def _link(depth, target, kind, source, members, g, config, **extra):
+    rate = float(g.passed.mean())
+    bar = float(g.bar.iloc[0])
+    med = float(g.value.median())
+    return dict(depth=depth, target=target, source=source, kind=kind, members=tuple(members),
+                pass_rate=rate, tier=tier(rate, config.keep, config.flag), r2_median=med,
+                r2_min=float(g.value.min()), r2_max=float(g.value.max()), noise_bar=bar,
+                x_noise=med / bar if bar > 0 else np.nan, **extra)
+
+
+PAIR_COLUMNS = ["depth", "target", "a", "b", "spearman", "relation", "rate", "tier", "screened_member",
+                "screened_by", "rate_both_proximal", "rate_partner_screening", "rate_shared_redundant"]
+
+
+def _classify_pairs(folds, edges, depth, target, config):
+    """Per-fold relation of each dependence pair, tallied across folds (C4).
+
+    both_proximal: both pass unique. partner_screening: one passes unique and
+    the other passes only broad (it is screened by the first).
+    shared_redundant: neither passes unique but dropping both passes.
+    """
+    real = folds[~folds.noise]
+    passed = {(r.contrast, r.source, r.fold): bool(r.passed) for r in real.itertuples()}
+    rows = []
+    for a, b, score in edges:
+        counts = {"both_proximal": 0, "partner_screening": 0, "shared_redundant": 0}
+        screened = {}
+        for k in range(config.folds):
+            ua, ub = passed[("unique", a, k)], passed[("unique", b, k)]
+            ba, bb = passed[("broad", a, k)], passed[("broad", b, k)]
+            if ua and ub:
+                counts["both_proximal"] += 1
+            elif (ua and bb) or (ub and ba):
+                counts["partner_screening"] += 1
+                member, by = (b, a) if ua else (a, b)
+                screened[(member, by)] = screened.get((member, by), 0) + 1
+            elif not ua and not ub and passed[("pair", f"{a}+{b}", k)]:
+                counts["shared_redundant"] += 1
+        order = list(counts)
+        relation = max(order, key=lambda r: (counts[r], -order.index(r)))
+        rate = counts[relation] / config.folds
+        member, by = max(screened, key=screened.get) if relation == "partner_screening" and screened \
+            else (None, None)
+        rows.append(dict(depth=depth, target=target, a=a, b=b, spearman=score,
+                         relation=relation if rate > 0 else "none", rate=rate,
+                         tier=tier(rate, config.keep, config.flag) if rate > 0 else "dropped",
+                         screened_member=member, screened_by=by,
+                         **{f"rate_{r}": c / config.folds for r, c in counts.items()}))
+    return pd.DataFrame(rows, columns=PAIR_COLUMNS)
+
+
+def _interactions(Xo, yo, fold_o, active, candidates, noise_of, depth, target, config):
+    """Held-out R² gained by adding a pair's joint curve to an additive spline model (C5).
+
+    Engine-independent: in each fold an additive spline ridge model (all
+    candidates and noise columns) is tuned once on the training folds, and
+    every pair's joint model reuses those settings. Real pairs are each kept or
+    flagged source with every other candidate, so an interaction partner needs
+    no main effect of its own. Each real pair (a, b) has one noise comparator,
+    (a, noise b) or (noise a, b) at random, pooled across folds for the bar.
+    Returns fold rows and the member tuple of each real pair.
+    """
+    from open.pair_validation import PairValidationConfig, _estimator, _tune
+    real = []
+    for a in active:
+        for c in candidates:
+            pair = tuple(sorted((a, c), key=candidates.index))
+            if c != a and pair not in real:
+                real.append(pair)
+    real = tuple(real[:config.max_interaction_pairs])
+    if not real:
+        return pd.DataFrame(), {}
+    flip = np.random.default_rng(_sub_seed(config.seed, "pair-noise", depth, target)).random(len(real)) < .5
+    fake = tuple((a, noise_of[b]) if f else (noise_of[a], b) for (a, b), f in zip(real, flip))
+    col = {c: i for i, c in enumerate(Xo.columns)}
+    rows = []
+    for k in range(config.folds):
+        train, test = fold_o != k, fold_o == k
+        Xtr, Xte, ytr, yte = Xo[train], Xo[test], yo[train], yo[test]
+        pv = PairValidationConfig(seed=_sub_seed(config.seed, "pairs", depth, target, k))
+        base, params, _ = _tune(Xtr, ytr, None, pv)
+        base_mse = float(np.mean((yte - base.predict(Xte)) ** 2))
+        ref_mse = float(np.mean((yte - ytr.mean()) ** 2))
+        for i, pair in enumerate(real + fake):
+            joint = _estimator((col[pair[0]], col[pair[1]])).set_params(**params).fit(Xtr, ytr)
+            gain = (base_mse - float(np.mean((yte - joint.predict(Xte)) ** 2))) / ref_mse
+            rows.append(dict(depth=depth, target=target, fold=k, contrast="interaction",
+                             source="*".join(m.removeprefix(NOISE_PREFIX) for m in pair),
+                             noise=i >= len(real), value=gain))
+    return pd.DataFrame(rows), {"*".join(p): p for p in real}
+
+
 def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], fold_ids: np.ndarray,
-                  engine, config: ExploreConfig, depth: int = 1) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Fold-level contrasts and per-source tiers for one target. Returns (folds, links)."""
+                  engine, config: ExploreConfig, depth: int = 1):
+    """Fold-level contrasts, links and pair classes for one target.
+
+    Returns (folds, links, pairs).
+    """
     candidates = tuple(candidates)
     if not candidates or target in candidates:
         raise ValueError("candidates must be nonempty and exclude the target")
     model = _predictor(engine, target, config.seed)
     rng = np.random.default_rng(_sub_seed(config.seed, "noise", depth, target))
-    noise = {f"{NOISE_PREFIX}{c}": rng.permutation(data[c].to_numpy(dtype=float, na_value=np.nan))
+    noise_of = {c: f"{NOISE_PREFIX}{c}" for c in candidates}
+    noise = {noise_of[c]: rng.permutation(data[c].to_numpy(dtype=float, na_value=np.nan))
              for c in candidates}
     X = pd.concat([data[list(candidates)].astype(float).reset_index(drop=True),
                    pd.DataFrame(noise)], axis=1)
     noise_cols = tuple(noise)
     columns = candidates + noise_cols
-    groups = _components(data, candidates, config.dependence_pair)
+    edges, groups = _dependence(data, candidates, config.dependence_pair)
     y = data[target].to_numpy(dtype=float, na_value=np.nan)
     observed = ~np.isnan(y)
     group_rng = np.random.default_rng(_sub_seed(config.seed, "groups", depth, target))
     noise_sets = {m: [tuple(sorted(group_rng.choice(len(noise_cols), m, replace=False)))
                       for _ in range(config.noise_groups)]
                   for m in sorted({len(g) for g in groups})}
+    pair_sets = [tuple(sorted(group_rng.choice(len(noise_cols), 2, replace=False)))
+                 for _ in range(config.noise_groups)] if edges else []
 
     rows = []
     for k in range(config.folds):
@@ -198,54 +321,65 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
             rows.append(dict(depth=depth, target=target, fold=k, contrast=contrast, source=source,
                              noise=is_noise, value=value))
 
+        def lost(drop):
+            kept = tuple(x for x in columns if x not in drop)
+            return (_risk(model, params, Xtr, ytr, Xte, yte, kept) - full) / base
+
         for c in columns:
-            without = _risk(model, params, Xtr, ytr, Xte, yte, tuple(x for x in columns if x != c))
             alone = _risk(model, params, Xtr, ytr, Xte, yte, (c,))
             name = c.removeprefix(NOISE_PREFIX)
-            add("unique", name, (without - full) / base, c in noise)
+            add("unique", name, lost({c}), c in noise)
             add("broad", name, (base - alone) / base, c in noise)
+        for a, b, _ in edges:
+            add("pair", f"{a}+{b}", lost({a, b}), False)
+        for i, idx in enumerate(pair_sets):
+            add("pair", f"noise-set-{i}", lost({noise_cols[j] for j in idx}), True)
         for g in groups:
-            without = _risk(model, params, Xtr, ytr, Xte, yte, tuple(x for x in columns if x not in g))
-            add(f"group{len(g)}", "+".join(g), (without - full) / base, False)
+            add(f"group{len(g)}", "+".join(g), lost(set(g)), False)
         for m, sets in noise_sets.items():
             for i, idx in enumerate(sets):
-                drop = {noise_cols[j] for j in idx}
-                without = _risk(model, params, Xtr, ytr, Xte, yte, tuple(x for x in columns if x not in drop))
-                add(f"group{m}", f"noise-set-{i}", (without - full) / base, True)
+                add(f"group{m}", f"noise-set-{i}", lost({noise_cols[j] for j in idx}), True)
 
-    folds = pd.DataFrame(rows)
-    bars = (folds[folds.noise].groupby("contrast").value
-            .quantile(config.noise_quantile, interpolation="linear"))
-    folds["bar"] = folds.contrast.map(bars)
-    folds["passed"] = folds.value > folds.bar
+    folds = _apply_bars(pd.DataFrame(rows), config.noise_quantile)
     real = folds[~folds.noise]
     links = []
-    for (contrast, source), g in real.groupby(["contrast", "source"], sort=False):
-        if contrast == "broad":
-            continue
-        rate = float(g.passed.mean())
-        bar = float(g.bar.iloc[0])
-        med = float(g.value.median())
-        links.append(dict(depth=depth, target=target, source=source,
-                          kind="unique" if contrast == "unique" else "shared",
-                          members=tuple(source.split("+")), pass_rate=rate,
-                          tier=tier(rate, config.keep, config.flag),
-                          r2_median=med, r2_min=float(g.value.min()), r2_max=float(g.value.max()),
-                          noise_bar=bar, x_noise=med / bar if bar > 0 else np.nan,
-                          broad_pass_rate=np.nan))
-    broad = real[real.contrast == "broad"].groupby("source").passed.mean()
-    for link in links:
-        if link["kind"] == "unique":
-            link["broad_pass_rate"] = float(broad[link["source"]])
-    return folds, pd.DataFrame(links)
+    for c in candidates:
+        g = real[(real.contrast == "unique") & (real.source == c)]
+        b = real[(real.contrast == "broad") & (real.source == c)]
+        links.append(_link(depth, target, "unique", c, (c,), g, config,
+                           broad_pass_rate=float(b.passed.mean()), broad_r2_median=float(b.value.median())))
+    for grp in groups:
+        source = "+".join(grp)
+        g = real[(real.contrast == f"group{len(grp)}") & (real.source == source)]
+        links.append(_link(depth, target, "shared", source, grp, g, config))
+    pairs = _classify_pairs(folds, edges, depth, target, config)
+
+    if config.interactions:
+        active = {l["source"] for l in links if l["kind"] == "unique" and l["tier"] != "dropped"}
+        for l in links:
+            if l["kind"] == "shared" and l["tier"] != "dropped":
+                active.update(l["members"])
+        inter, members = _interactions(X[observed].reset_index(drop=True), y[observed], fold_ids[observed],
+                                       [c for c in candidates if c in active], candidates, noise_of,
+                                       depth, target, config)
+        if len(inter):
+            inter = _apply_bars(inter, config.noise_quantile)
+            folds = pd.concat([folds, inter], ignore_index=True)
+            for source, pair in members.items():
+                g = inter[~inter.noise & (inter.source == source)]
+                links.append(_link(depth, target, "interaction", source, pair, g, config))
+    return folds, pd.DataFrame(links), pairs
 
 
 def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
             config: ExploreConfig | None = None) -> ExploreResult:
     """Build the exploratory network for ``outcome``, one depth at a time.
 
-    A dependence group (correlated candidates) counts only when at least one
-    member isn't kept by itself. A kept group promotes all its members.
+    A dependence group (correlated candidates) counts only when none of its
+    members is kept by itself; otherwise the kept member already carries the
+    group's signal, and promoting the rest would promote a screened proxy.
+    A kept group promotes all its members.
+    Interactions are reported and drawn but promote nothing.
     """
     config = config or ExploreConfig()
     if not isinstance(data, pd.DataFrame):
@@ -258,6 +392,8 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
     if missing:
         raise ValueError(f"unknown columns: {missing}")
     for v in variables:
+        if type(v) is not str or not v or v.startswith(NOISE_PREFIX) or "+" in v or "*" in v:
+            raise ValueError(f"variable name {v!r} must be a string without '+', '*' or {NOISE_PREFIX!r}")
         s = data[v]
         if not pd.api.types.is_numeric_dtype(s) or pd.api.types.is_bool_dtype(s):
             raise ValueError(f"variable {v!r} must be numeric")
@@ -273,7 +409,7 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
     np.random.default_rng(_sub_seed(config.seed, "folds")).shuffle(fold_ids)
 
     depths, parents, stops = {outcome: 0}, {}, {}
-    all_folds, all_links = [], []
+    all_folds, all_links, all_pairs = [], [], []
     frontier, depth = (outcome,), 0
     while frontier:
         if config.max_depth is not None and depth >= config.max_depth:
@@ -286,14 +422,15 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
         depth += 1
         next_parents = {}
         for target in frontier:
-            folds, links = assess_target(data, target, pool, fold_ids, engine, config, depth)
+            folds, links, pairs = assess_target(data, target, pool, fold_ids, engine, config, depth)
             kept_alone = set(links.source[(links.kind == "unique") & (links.tier == "kept")])
-            shared = links.kind == "shared"
-            links = links[~shared | links.members.map(lambda m: not set(m) <= kept_alone)]
+            redundant = (links.kind == "shared") & links.members.map(lambda m: bool(set(m) & kept_alone))
+            links = links[~redundant]
             all_folds.append(folds)
             all_links.append(links)
+            all_pairs.append(pairs)
             promoted = set()
-            for _, r in links[links.tier == "kept"].iterrows():
+            for _, r in links[(links.tier == "kept") & (links.kind != "interaction")].iterrows():
                 promoted.update(r.members)
             if not promoted:
                 stops[target] = "NOTHING_KEPT"
@@ -306,9 +443,11 @@ def explore(data: pd.DataFrame, outcome: str, predictors=None, engine="ols",
 
     nodes = pd.DataFrame([dict(variable=v, depth=d, parents=parents.get(v, ())) for v, d in depths.items()])
     links = pd.concat(all_links, ignore_index=True) if all_links else pd.DataFrame()
+    all_pairs = [p for p in all_pairs if len(p)]
+    pairs = pd.concat(all_pairs, ignore_index=True) if all_pairs else pd.DataFrame(columns=PAIR_COLUMNS)
     folds = pd.concat(all_folds, ignore_index=True) if all_folds else pd.DataFrame()
     bars = (folds[folds.noise].groupby(["depth", "target", "contrast"]).bar.first().reset_index()
             if len(folds) else pd.DataFrame())
     name = engine.engine_name if isinstance(engine, Predictor) else engine
     settings = dict(outcome=outcome, engine=name, n=n, **asdict(config))
-    return ExploreResult(nodes, links, folds, bars, stops, settings)
+    return ExploreResult(nodes, links, pairs, folds, bars, stops, settings)
