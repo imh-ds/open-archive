@@ -377,3 +377,11 @@ Remaining steps before freezing:
   last-bit floating-point differences from the local machine have no scientific
   effect. The review regenerates its 2% sample on the runner itself.
 
+
+**Amendment A1.1 (first dispatch, run 39105672167):** the prepare job stopped
+because the runner did not regenerate a byte-identical manifest. The frozen
+file itself passed its SHA-256 check. The harness now compares the regenerated
+manifest field by field: non-float values must match exactly, and floats must
+match to 1e-12 relative (CPU-specific BLAS kernels can change last bits of the
+computed β, σ² and analytic power). Every run reads those values from the
+frozen file. No computation had started; nothing was retried automatically.

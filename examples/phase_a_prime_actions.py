@@ -52,10 +52,30 @@ def load_manifest(path, mod):
     m = json.loads(Path(path).read_text(encoding="utf-8"))
     if mod.manifest_sha(m) != FROZEN_MANIFEST_SHA:
         raise SystemExit("manifest is not the frozen Phase A' manifest")
+    # The runs read beta, sigma2 and analytic power from the frozen file. Regenerating
+    # here only confirms this runtime reproduces the design: non-floats exactly, floats to
+    # 1e-12 relative (BLAS kernels differ by CPU in the last bits).
     current = json.loads(json.dumps(mod.build_manifest(), default=float))
-    if mod.manifest_sha(current) != FROZEN_MANIFEST_SHA:
-        raise SystemExit("this runtime does not regenerate the frozen manifest (versions/source differ)")
+    diffs = _compare(m, current, "")
+    if diffs:
+        print(json.dumps({"manifest_regeneration_differences": diffs[:50]}, indent=1), file=sys.stderr)
+        raise SystemExit("this runtime does not reproduce the frozen design (see differences above)")
     return m
+
+
+def _compare(a, b, path):
+    if isinstance(a, dict) and isinstance(b, dict):
+        out = [f"{path}.{k}: missing" for k in sorted(set(a) ^ set(b))]
+        for k in sorted(set(a) & set(b)):
+            out += _compare(a[k], b[k], f"{path}.{k}")
+        return out
+    if isinstance(a, list) and isinstance(b, list):
+        if len(a) != len(b):
+            return [f"{path}: length {len(a)} != {len(b)}"]
+        return [d for i, (x, y) in enumerate(zip(a, b)) for d in _compare(x, y, f"{path}[{i}]")]
+    if isinstance(a, float) and isinstance(b, float) and not isinstance(a, bool):
+        return [] if abs(a - b) <= 1e-12 * max(1.0, abs(a)) else [f"{path}: {a!r} != {b!r}"]
+    return [] if a == b else [f"{path}: {a!r} != {b!r}"]
 
 
 def make_plan(cells, shards):
