@@ -37,6 +37,11 @@ from open.learners import make_predictor
 from open.learners.base import Predictor
 
 NOISE_PREFIX = "__noise__"
+# Engines validated for exploratory mode (validation study run 39184696821).
+# Random forest and sklearn gradient boosting were dropped on 2026-10-19; see
+# docs/exploratory-mode-engines.md. New engines are added only after they pass
+# the same validation study.
+SUPPORTED_ENGINES = ("ols", "elastic_net", "lightgbm")
 TIERS = ("kept", "flagged", "dropped", "hidden")
 # "x noise" is shown only when the noise bar is at least this; below it the
 # ratio divides by about zero (e.g. Elastic-Net shrinks noise columns to 0).
@@ -132,6 +137,10 @@ def tier(rate: float, keep: float, flag: float) -> str:
 
 
 def _predictor(engine, outcome: str, seed: int) -> Predictor:
+    name = engine.engine_name if isinstance(engine, Predictor) else engine
+    if name not in SUPPORTED_ENGINES:
+        raise ValueError(f"engine {name!r} is not validated for exploratory mode; "
+                         f"use one of {SUPPORTED_ENGINES}")
     if isinstance(engine, Predictor):
         return engine
     config = OpenConfig(analysis=AnalysisConfig(root=outcome, random_seed=seed),

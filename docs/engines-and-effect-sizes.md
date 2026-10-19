@@ -1,5 +1,10 @@
 # Interchangeable engines and comparable predictive effect sizes
 
+> **Exploratory mode** supports only OLS, Elastic-Net and LightGBM. Random
+> forest and gradient boosting were dropped on 2026-10-19; see
+> [exploratory-mode-engines.md](exploratory-mode-engines.md). This page
+> describes the earlier subsample pipeline.
+
 OPEN retains elastic net as its default. A fixed engine can instead be
 `random_forest`, `gbm` (scikit-learn gradient boosting), or `lightgbm` (optional
 dependency). One engine is used throughout a recursive construction. Comparing

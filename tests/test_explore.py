@@ -198,3 +198,9 @@ def test_hide_floor_hides_tiny_effects_and_stops_their_promotion():
     assert 'Hidden: 1' in on.summary()
     with pytest.raises(ValueError):
         ExploreConfig(hide_below=1.5)
+
+
+@pytest.mark.parametrize('engine', ['random_forest', 'gbm'])
+def test_unvalidated_engines_are_rejected(engine):
+    with pytest.raises(ValueError, match='not validated'):
+        explore(_chain(n=400), 'Y', engine=engine, config=ExploreConfig(max_depth=1, interactions=False))
