@@ -155,6 +155,8 @@ def test_planted_interaction_is_detected_without_main_effect_of_partner():
     inter = res.links[res.links.kind == 'interaction'].set_index('source')
     assert inter.loc['A*B', 'tier'] == 'kept'
     assert inter.loc['A*B', 'members'] == ('A', 'B')
+    # .35 * A * B explains about .1 of Y's variance; the held-out gain must be of that order
+    assert inter.loc['A*B', 'r2_median'] > .05
     f = res.folds[res.folds.contrast == 'interaction']
     assert f.noise.sum() == f[~f.noise].shape[0]            # one noise comparator per real pair
     assert 'B' not in set(res.nodes.variable)              # interactions promote nothing
@@ -168,4 +170,31 @@ def test_write_explore_outputs(tmp_path):
                  'summary.txt', 'network.png'):
         assert (out / name).stat().st_size > 0
     links = pd.read_csv(out / 'links.csv')
-    assert {'pass_rate', 'tier', 'r2_median', 'x_noise', 'noise_bar'} <= set(links.columns)
+    assert {'pass_rate', 'fold_tier', 'tier', 'r2_median', 'r2_above_noise', 'x_noise', 'noise_bar'}         <= set(links.columns)
+
+
+def test_r2_above_noise_and_ratio_only_with_a_real_noise_bar(chain_result):
+    links = chain_result.links
+    assert np.allclose(links.r2_above_noise, links.r2_median - links.noise_bar)
+    small = links.noise_bar < .001
+    assert links.x_noise[small].isna().all()
+    assert np.allclose(links.x_noise[~small], (links.r2_median / links.noise_bar)[~small])
+
+
+def test_hide_floor_hides_tiny_effects_and_stops_their_promotion():
+    r = np.random.default_rng(21)
+    n = 3000
+    d = pd.DataFrame(r.normal(size=(n, 5)), columns=['A', 'T', 'C', 'D', 'E'])
+    d['Y'] = .5 * d.A + .12 * d['T'] + r.normal(size=n)    # T explains about .011 of Y
+    on = explore(d, 'Y', engine='ols', config=ExploreConfig(max_depth=1, interactions=False, hide_below=.02))
+    off = explore(d, 'Y', engine='ols', config=ExploreConfig(max_depth=1, interactions=False, hide_below=None))
+    t_on = on.links.set_index('source').loc['T']
+    t_off = off.links.set_index('source').loc['T']
+    assert t_off.tier == t_off.fold_tier != 'dropped'
+    assert t_on.tier == 'hidden' and t_on.fold_tier == t_off.fold_tier
+    assert 'A' in set(on.nodes.variable)
+    assert ('T' in set(off.nodes.variable)) == (t_off.tier == 'kept')
+    assert 'T' not in set(on.nodes.variable)
+    assert 'Hidden: 1' in on.summary()
+    with pytest.raises(ValueError):
+        ExploreConfig(hide_below=1.5)

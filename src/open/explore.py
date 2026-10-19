@@ -37,7 +37,10 @@ from open.learners import make_predictor
 from open.learners.base import Predictor
 
 NOISE_PREFIX = "__noise__"
-TIERS = ("kept", "flagged", "dropped")
+TIERS = ("kept", "flagged", "dropped", "hidden")
+# "x noise" is shown only when the noise bar is at least this; below it the
+# ratio divides by about zero (e.g. Elastic-Net shrinks noise columns to 0).
+RATIO_MIN_BAR = 0.001
 
 
 @dataclass(frozen=True)
@@ -51,6 +54,7 @@ class ExploreConfig:
     noise_groups: int = 10
     interactions: bool = True
     max_interaction_pairs: int = 100
+    hide_below: float | None = 0.001
     max_depth: int | None = None
     seed: int = 0
 
@@ -69,6 +73,9 @@ class ExploreConfig:
             raise ValueError("noise_groups must be a positive integer")
         if type(self.max_interaction_pairs) is not int or self.max_interaction_pairs < 0:
             raise ValueError("max_interaction_pairs must be a nonnegative integer")
+        if self.hide_below is not None and (isinstance(self.hide_below, bool)
+                                            or not 0 <= self.hide_below < 1):
+            raise ValueError("hide_below must be None or in [0, 1)")
         if self.max_depth is not None and (type(self.max_depth) is not int or self.max_depth < 1):
             raise ValueError("max_depth must be None or a positive integer")
         if type(self.seed) is not int or not 0 <= self.seed < 2**32:
@@ -90,12 +97,12 @@ class ExploreResult:
         lines = [f"Outcome: {s['outcome']}  (engine {s['engine']}, N = {s['n']}, {s['folds']} folds; "
                  f"kept >= {s['keep']:.0%}, flagged >= {s['flag']:.0%} of folds above the "
                  f"{s['noise_quantile']:.0%} noise bar)"]
-        shown = self.links[self.links.tier != "dropped"]
+        shown = self.links[self.links.tier.isin(["kept", "flagged"])]
         for depth, group in shown.groupby("depth"):
             lines.append(f"Depth {depth}:")
             for _, r in group.iterrows():
                 style = "solid " if r.tier == "kept" else "dotted"
-                ratio = "" if pd.isna(r.x_noise) else f", {r.x_noise:.1f}x noise"
+                ratio = f", {r.r2_above_noise:+.4f} above noise"
                 what = "R2 gained" if r.kind == "interaction" else "R2 lost"
                 lines.append(f"  [{style}] {r.source} -> {r.target}  ({r.kind}) passed {r.pass_rate:.0%}, "
                              f"{what} {r.r2_median:.4f}{ratio}")
@@ -108,6 +115,10 @@ class ExploreResult:
                              f"[{r.tier}]{extra}")
         if shown.empty:
             lines.append("No link reached the flagged tier.")
+        hidden = int((self.links.tier == "hidden").sum()) if len(self.links) else 0
+        if hidden:
+            lines.append(f"Hidden: {hidden} relation(s) passed enough folds but have median R2 below "
+                         f"{s['hide_below']} (hide_below).")
         return "\n".join(lines)
 
 
@@ -182,13 +193,23 @@ def _apply_bars(folds: pd.DataFrame, q: float) -> pd.DataFrame:
 
 
 def _link(depth, target, kind, source, members, g, config, **extra):
+    """One relation's tally.
+
+    ``fold_tier`` comes from the fold pass rate alone. ``tier`` is final: a kept
+    or flagged relation whose median R² is below ``hide_below`` becomes
+    "hidden", is not drawn and promotes nothing.
+    """
     rate = float(g.passed.mean())
     bar = float(g.bar.iloc[0])
     med = float(g.value.median())
+    fold_tier = tier(rate, config.keep, config.flag)
+    final = fold_tier
+    if fold_tier != "dropped" and config.hide_below is not None and med < config.hide_below:
+        final = "hidden"
     return dict(depth=depth, target=target, source=source, kind=kind, members=tuple(members),
-                pass_rate=rate, tier=tier(rate, config.keep, config.flag), r2_median=med,
+                pass_rate=rate, fold_tier=fold_tier, tier=final, r2_median=med,
                 r2_min=float(g.value.min()), r2_max=float(g.value.max()), noise_bar=bar,
-                x_noise=med / bar if bar > 0 else np.nan, **extra)
+                r2_above_noise=med - bar, x_noise=med / bar if bar >= RATIO_MIN_BAR else np.nan, **extra)
 
 
 PAIR_COLUMNS = ["depth", "target", "a", "b", "spearman", "relation", "rate", "tier", "screened_member",
@@ -232,18 +253,47 @@ def _classify_pairs(folds, edges, depth, target, config):
     return pd.DataFrame(rows, columns=PAIR_COLUMNS)
 
 
-def _interactions(Xo, yo, fold_o, active, candidates, noise_of, depth, target, config):
-    """Held-out R² gained by adding a pair's joint curve to an additive spline model (C5).
+def _pair_features(xa, xb, train, knots=3):
+    """Centered product plus the spline tensor block with the pair's own curves projected out.
 
-    Engine-independent: in each fold an additive spline ridge model (all
-    candidates and noise columns) is tuned once on the training folds, and
-    every pair's joint model reuses those settings. Real pairs are each kept or
-    flagged source with every other candidate, so an interaction partner needs
-    no main effect of its own. Each real pair (a, b) has one noise comparator,
-    (a, noise b) or (noise a, b) at random, pooled across folds for the bar.
-    Returns fold rows and the member tuple of each real pair.
+    Everything is fitted on the training rows only.
     """
-    from open.pair_validation import PairValidationConfig, _estimator, _tune
+    from sklearn.preprocessing import SplineTransformer
+
+    def spline(x):
+        x = np.where(np.isnan(x), np.nanmedian(x[train]), x)
+        st = SplineTransformer(n_knots=knots, degree=3, knots="quantile", extrapolation="linear",
+                               include_bias=False).fit(x[train][:, None])
+        z = (x - x[train].mean()) / (x[train].std() or 1.0)
+        return st.transform(x[:, None]), z
+
+    A, za = spline(xa)
+    B, zb = spline(xb)
+    tensor = (A[:, :, None] * B[:, None, :]).reshape(len(xa), -1)
+    marginal = np.column_stack([np.ones(len(xa)), A, B])
+    projection = np.linalg.lstsq(marginal[train], tensor[train], rcond=None)[0]
+    return np.column_stack([za * zb, tensor - marginal @ projection])
+
+
+def _interactions(Xo, yo, fold_o, active, candidates, noise_of, depth, target, config):
+    """Held-out R² gained by a pair's joint term over an additive spline model (C5).
+
+    Engine-independent. In each fold an additive spline ridge model of all
+    candidates and noise columns is tuned on the training folds. For each pair,
+    a ridge model of its joint term (centered product plus the spline tensor
+    with the pair's own curves projected out, with its own cross-validated
+    penalty) is fitted to that model's training residuals. The gain is the
+    drop in held-out error relative to the mean-only model.
+
+    Real pairs are each kept or flagged source with every other candidate, so
+    an interaction partner needs no main effect of its own. Each real pair
+    (a, b) has one noise comparator, (a, noise b) or (noise a, b) at random,
+    and these are pooled across folds for the bar. Returns fold rows and the
+    member tuple of each real pair.
+    """
+    from sklearn.linear_model import RidgeCV
+    from sklearn.preprocessing import StandardScaler
+    from open.pair_validation import PairValidationConfig, _tune
     real = []
     for a in active:
         for c in candidates:
@@ -255,20 +305,24 @@ def _interactions(Xo, yo, fold_o, active, candidates, noise_of, depth, target, c
         return pd.DataFrame(), {}
     flip = np.random.default_rng(_sub_seed(config.seed, "pair-noise", depth, target)).random(len(real)) < .5
     fake = tuple((a, noise_of[b]) if f else (noise_of[a], b) for (a, b), f in zip(real, flip))
-    col = {c: i for i, c in enumerate(Xo.columns)}
+    alphas = np.logspace(-2, 4, 13)
     rows = []
     for k in range(config.folds):
         train, test = fold_o != k, fold_o == k
-        Xtr, Xte, ytr, yte = Xo[train], Xo[test], yo[train], yo[test]
         pv = PairValidationConfig(seed=_sub_seed(config.seed, "pairs", depth, target, k))
-        base, params, _ = _tune(Xtr, ytr, None, pv)
-        base_mse = float(np.mean((yte - base.predict(Xte)) ** 2))
-        ref_mse = float(np.mean((yte - ytr.mean()) ** 2))
-        for i, pair in enumerate(real + fake):
-            joint = _estimator((col[pair[0]], col[pair[1]])).set_params(**params).fit(Xtr, ytr)
-            gain = (base_mse - float(np.mean((yte - joint.predict(Xte)) ** 2))) / ref_mse
+        base, _, _ = _tune(Xo[train], yo[train], None, pv)
+        fitted = base.predict(Xo)
+        res_tr, res_te = yo[train] - fitted[train], yo[test] - fitted[test]
+        ref_mse = float(np.mean((yo[test] - yo[train].mean()) ** 2))
+        inner = KFold(3, shuffle=True, random_state=_sub_seed(config.seed, "pair-ridge", depth, target, k))
+        for i, (ma, mb) in enumerate(real + fake):
+            F = _pair_features(Xo[ma].to_numpy(dtype=float), Xo[mb].to_numpy(dtype=float), train)
+            scale = StandardScaler().fit(F[train])
+            ridge = RidgeCV(alphas=alphas, cv=inner).fit(scale.transform(F[train]), res_tr)
+            pred = ridge.predict(scale.transform(F[test]))
+            gain = (float(np.mean(res_te ** 2)) - float(np.mean((res_te - pred) ** 2))) / ref_mse
             rows.append(dict(depth=depth, target=target, fold=k, contrast="interaction",
-                             source="*".join(m.removeprefix(NOISE_PREFIX) for m in pair),
+                             source="*".join(m.removeprefix(NOISE_PREFIX) for m in (ma, mb)),
                              noise=i >= len(real), value=gain))
     return pd.DataFrame(rows), {"*".join(p): p for p in real}
 
@@ -355,9 +409,9 @@ def assess_target(data: pd.DataFrame, target: str, candidates: tuple[str, ...], 
     pairs = _classify_pairs(folds, edges, depth, target, config)
 
     if config.interactions:
-        active = {l["source"] for l in links if l["kind"] == "unique" and l["tier"] != "dropped"}
+        active = {l["source"] for l in links if l["kind"] == "unique" and l["fold_tier"] != "dropped"}
         for l in links:
-            if l["kind"] == "shared" and l["tier"] != "dropped":
+            if l["kind"] == "shared" and l["fold_tier"] != "dropped":
                 active.update(l["members"])
         inter, members = _interactions(X[observed].reset_index(drop=True), y[observed], fold_ids[observed],
                                        [c for c in candidates if c in active], candidates, noise_of,

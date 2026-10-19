@@ -11,6 +11,8 @@ network graph. ``plot_explore`` draws the graph:
 - interactions as a × marker joining the two predictors, with a line to the
   target;
 - predictors that are only flagged, and never kept, as grey candidate nodes.
+
+Relations hidden by ``hide_below`` are left out of the graph but stay in the tables.
 """
 from __future__ import annotations
 
