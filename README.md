@@ -1,4 +1,13 @@
-# open
+# open (development archive)
+
+> **This is the development archive of OPEN.** It was named `imh-ds/open` until
+> 2026-10-19. The published method, its validation evidence and reproduction
+> instructions are in **[imh-ds/open](https://github.com/imh-ds/open)**.
+>
+> Links in this repository's results files of the form `github.com/imh-ds/open/...`
+> (commits, Actions runs, releases) refer to **this** repository. The final work
+> is on branches `codex/exploratory-mode` and `codex/multiengine-preflight`.
+
 Outcome-centered Predictive Expansion Network
 
 ## Development usage
