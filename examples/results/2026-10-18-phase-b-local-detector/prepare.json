@@ -1,0 +1,31 @@
+{
+ "manifest_sha256": "73aef5e6ca31a963a7a3d9af2cdd869e15448c0f0074c85e97472fa08b04febd",
+ "source_sha256": "7f2da249796593144ba51d17b99cfc860e393b79060e726c81fb8115e1165af6",
+ "checks": {
+  "hc4_identity_with_phase_a_prime": {
+   "fixtures": 200,
+   "max_abs_p_diff": 0.0,
+   "tolerance": 1e-12,
+   "pass": true
+  },
+  "gcm_identity_with_phase_a": {
+   "fixtures": 60,
+   "reference": "Phase A gcm_crossfit (M4)",
+   "max_abs_p_diff": 0.0,
+   "tolerance": 1e-10,
+   "pass": true
+  },
+  "determinism": {
+   "fixtures": 2,
+   "separate_process_pools": 2,
+   "identical_bytes": true,
+   "pass": true
+  },
+  "run_guard": {
+   "refuses_existing_output": true,
+   "pass": true
+  }
+ },
+ "all_pass": true,
+ "note": "full --check (all parts) passed on this runner image for this exact source: Actions run 39113988219, examples/results/2026-10-18-phase-b-local-detector-check/"
+}

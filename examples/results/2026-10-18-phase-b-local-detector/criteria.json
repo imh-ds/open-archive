@@ -1,0 +1,3281 @@
+{
+ "constants": {
+  "z99": 2.5758293035489004,
+  "zg": 3.89,
+  "margin": 0.005,
+  "count_level": 0.01
+ },
+ "correction_screen": {
+  "candidates": {
+   "g0": {
+    "c1_by_n": {
+     "100": {
+      "pass": false,
+      "pooled": {
+       "X1": {
+        "rate": 0.07025,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": false
+       },
+       "X0": {
+        "rate": 0.06816666666666667,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": false
+       },
+       "Z1": {
+        "rate": 0.07,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": false
+       },
+       "Z2": {
+        "rate": 0.07383333333333333,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": false
+       },
+       "M": {
+        "rate": 0.06833333333333333,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": false
+       },
+       "W": {
+        "rate": 0.07986666666666668,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": false
+       }
+      },
+      "failing_cells": [
+       59,
+       60,
+       61
+      ],
+      "allowance": 1,
+      "cells": 4,
+      "gross": [
+       {
+        "cell_index": 60,
+        "role": "Z2",
+        "rate": 0.0815
+       },
+       {
+        "cell_index": 60,
+        "role": "M",
+        "rate": 0.085
+       }
+      ]
+     },
+     "200": {
+      "pass": false,
+      "pooled": {
+       "X1": {
+        "rate": 0.06225,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.063,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": false
+       },
+       "Z1": {
+        "rate": 0.06,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.06,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.0615,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "W": {
+        "rate": 0.06753333333333333,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": false
+       }
+      },
+      "failing_cells": [
+       64
+      ],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     },
+     "300": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.05175,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.05683333333333333,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.05733333333333333,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.055,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.052833333333333336,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "W": {
+        "rate": 0.0594,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     },
+     "500": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.0525,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.0515,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.06183333333333333,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.05416666666666667,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.05216666666666667,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "W": {
+        "rate": 0.0566,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": true
+       }
+      },
+      "failing_cells": [
+       72
+      ],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     },
+     "1000": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.049,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.052333333333333336,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.049666666666666665,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.051333333333333335,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.04583333333333333,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "W": {
+        "rate": 0.05066666666666666,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     }
+    },
+    "power_by_n": {
+     "100": {
+      "loss_vs_r1": -0.033,
+      "se": 0.005428649474552467,
+      "pass": true
+     },
+     "200": {
+      "loss_vs_r1": -0.022,
+      "se": 0.005636833059748331,
+      "pass": true
+     },
+     "300": {
+      "loss_vs_r1": -0.0125,
+      "se": 0.005494266874137269,
+      "pass": true
+     },
+     "500": {
+      "loss_vs_r1": -0.006,
+      "se": 0.004847034853746847,
+      "pass": true
+     },
+     "1000": {
+      "loss_vs_r1": -0.005,
+      "se": 0.002998665702941726,
+      "pass": true
+     }
+    },
+    "qualifies_from": 300,
+    "mean_power": 0.4821
+   },
+   "g1": {
+    "c1_by_n": {
+     "100": {
+      "pass": false,
+      "pooled": {
+       "X1": {
+        "rate": 0.0655,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": false
+       },
+       "X0": {
+        "rate": 0.06683333333333333,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": false
+       },
+       "Z1": {
+        "rate": 0.06383333333333334,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": false
+       },
+       "Z2": {
+        "rate": 0.0645,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": false
+       },
+       "M": {
+        "rate": 0.06283333333333334,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": false
+       },
+       "W": {
+        "rate": 0.072,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": false
+       }
+      },
+      "failing_cells": [
+       60
+      ],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     },
+     "200": {
+      "pass": false,
+      "pooled": {
+       "X1": {
+        "rate": 0.058,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.059166666666666666,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.0585,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.05616666666666666,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.06216666666666667,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "W": {
+        "rate": 0.0618,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": false
+       }
+      },
+      "failing_cells": [
+       64
+      ],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     },
+     "300": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.05125,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.05366666666666667,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.0545,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.051166666666666666,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.05683333333333333,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "W": {
+        "rate": 0.057133333333333335,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     },
+     "500": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.05375,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.053,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.058166666666666665,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.05366666666666667,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.051833333333333335,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "W": {
+        "rate": 0.055266666666666665,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     },
+     "1000": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.05,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.050166666666666665,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.049,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.049666666666666665,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.048666666666666664,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "W": {
+        "rate": 0.0496,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     }
+    },
+    "power_by_n": {
+     "100": {
+      "loss_vs_r1": -0.026,
+      "se": 0.004813895178895848,
+      "pass": true
+     },
+     "200": {
+      "loss_vs_r1": -0.02,
+      "se": 0.00445083193936552,
+      "pass": true
+     },
+     "300": {
+      "loss_vs_r1": -0.0085,
+      "se": 0.00471433850012352,
+      "pass": true
+     },
+     "500": {
+      "loss_vs_r1": -0.0025,
+      "se": 0.0033544748099553993,
+      "pass": true
+     },
+     "1000": {
+      "loss_vs_r1": 0.0005,
+      "se": 0.0020620380696049845,
+      "pass": true
+     }
+    },
+    "qualifies_from": 300,
+    "mean_power": 0.4777
+   },
+   "g2": {
+    "c1_by_n": {
+     "100": {
+      "pass": false,
+      "pooled": {
+       "X1": {
+        "rate": 0.06075,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.0615,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.05633333333333333,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.06066666666666667,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.058166666666666665,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "W": {
+        "rate": 0.06633333333333333,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": false
+       }
+      },
+      "failing_cells": [
+       60,
+       61
+      ],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     },
+     "200": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.0575,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.051333333333333335,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.05583333333333333,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.05516666666666667,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.05733333333333333,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "W": {
+        "rate": 0.056533333333333324,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     },
+     "300": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.05125,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.0505,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.05583333333333333,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.052,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.0545,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "W": {
+        "rate": 0.054933333333333334,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     },
+     "500": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.053,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.05266666666666667,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.053,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.05266666666666667,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.04933333333333333,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "W": {
+        "rate": 0.0496,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     },
+     "1000": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.05125,
+        "trials": 4000,
+        "limit": 0.06428505184204802,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.0505,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.04816666666666667,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.05366666666666667,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.050833333333333335,
+        "trials": 6000,
+        "limit": 0.0625812130827689,
+        "pass": true
+       },
+       "W": {
+        "rate": 0.04973333333333333,
+        "trials": 15000,
+        "limit": 0.05979478015372327,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 4,
+      "gross": []
+     }
+    },
+    "power_by_n": {
+     "100": {
+      "loss_vs_r1": 0.007,
+      "se": 0.006708054785069942,
+      "pass": true
+     },
+     "200": {
+      "loss_vs_r1": 0.0285,
+      "se": 0.007640226536612994,
+      "pass": true
+     },
+     "300": {
+      "loss_vs_r1": 0.076,
+      "se": 0.008697690780457549,
+      "pass": false
+     },
+     "500": {
+      "loss_vs_r1": 0.0895,
+      "se": 0.008847825552558336,
+      "pass": false
+     },
+     "1000": {
+      "loss_vs_r1": 0.0915,
+      "se": 0.007388583801060434,
+      "pass": false
+     }
+    },
+    "qualifies_from": 200,
+    "mean_power": 0.40790000000000004
+   }
+  },
+  "chosen": "g2",
+  "chosen_from_n": 200
+ },
+ "reference": {
+  "r1_c1": {
+   "300": true,
+   "500": true,
+   "1000": true,
+   "2000": true,
+   "5000": true
+  },
+  "r1_c4": {
+   "300": true,
+   "500": true,
+   "1000": true,
+   "2000": true,
+   "5000": true
+  },
+  "r2_g0_c1_n1000": true,
+  "defects": []
+ },
+ "configurations": {
+  "F1": {
+   "engine": "random_forest",
+   "ladder": {
+    "1000": {
+     "method": "F1_comb_g0",
+     "C1": {
+      "pass": false,
+      "pooled": {
+       "X1": {
+        "rate": 0.056666666666666664,
+        "trials": 1500,
+        "limit": 0.07016242616553779,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.06617021276595744,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": false
+       },
+       "Z1": {
+        "rate": 0.0625531914893617,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.05781818181818182,
+        "trials": 5500,
+        "limit": 0.06291831881649447,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.06319148936170213,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       }
+      },
+      "failing_cells": [
+       5,
+       7
+      ],
+      "allowance": 2,
+      "cells": 12,
+      "gross": []
+     },
+     "C3": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.05,
+        "trials": 500,
+        "limit": 0.08126209248472321,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.06142857142857143,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.06476190476190476,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.05238095238095238,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.05923076923076923,
+        "trials": 1300,
+        "limit": 0.07128705835549945,
+        "pass": true
+       }
+      },
+      "failing_cells": [
+       7
+      ],
+      "allowance": 1,
+      "cells": 5,
+      "gross": []
+     },
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.05092121212121211,
+       "limit": 0.06207900755592937,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.16507575757575754,
+       "limit": 0.2165577979330513,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": false
+    },
+    "2000": {
+     "method": "F1_comb_g0",
+     "C1": {
+      "pass": false,
+      "pooled": {
+       "X1": {
+        "rate": 0.05733333333333333,
+        "trials": 1500,
+        "limit": 0.07016242616553779,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.057659574468085104,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.050425531914893615,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.060181818181818184,
+        "trials": 5500,
+        "limit": 0.06291831881649447,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.0625531914893617,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       }
+      },
+      "failing_cells": [
+       18,
+       21,
+       23
+      ],
+      "allowance": 2,
+      "cells": 12,
+      "gross": []
+     },
+     "C3": {
+      "pass": false,
+      "pooled": {
+       "X1": {
+        "rate": 0.054,
+        "trials": 500,
+        "limit": 0.08126209248472321,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.05904761904761905,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.05238095238095238,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.06714285714285714,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.06461538461538462,
+        "trials": 1300,
+        "limit": 0.07128705835549945,
+        "pass": true
+       }
+      },
+      "failing_cells": [
+       18,
+       21
+      ],
+      "allowance": 1,
+      "cells": 5,
+      "gross": []
+     },
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.04532424242424242,
+       "limit": 0.061585197116678175,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.15777575757575754,
+       "limit": 0.21607518573038376,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": false
+    },
+    "5000": {
+     "method": "F1_comb_g0",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.043333333333333335,
+        "trials": 1500,
+        "limit": 0.07016242616553779,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.04638297872340426,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.048723404255319146,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.049272727272727274,
+        "trials": 5500,
+        "limit": 0.06291831881649447,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.049574468085106384,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 12,
+      "gross": []
+     },
+     "C3": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.048,
+        "trials": 500,
+        "limit": 0.08126209248472321,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.05,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.05142857142857143,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.05,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.04846153846153846,
+        "trials": 1300,
+        "limit": 0.07128705835549945,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 5,
+      "gross": []
+     },
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.040596969696969694,
+       "limit": 0.06097007274419988,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.13375757575757577,
+       "limit": 0.21477382687139246,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    },
+    "300": {
+     "method": "F1_comb_g2",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.071,
+        "trials": 1000,
+        "limit": 0.07357010368409606,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.05452380952380952,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.05523809523809524,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.0516,
+        "trials": 5000,
+        "limit": 0.06330480283737161,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.06095238095238095,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 11,
+      "gross": []
+     },
+     "C3": null,
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.042379999999999994,
+       "limit": 0.06187040661712975,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.15411666666666668,
+       "limit": 0.2166697751599481,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    },
+    "500": {
+     "method": "F1_comb_g2",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.05,
+        "trials": 1000,
+        "limit": 0.07357010368409606,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.055952380952380955,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.05904761904761905,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.0546,
+        "trials": 5000,
+        "limit": 0.06330480283737161,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.0569047619047619,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 11,
+      "gross": []
+     },
+     "C3": null,
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.041256666666666664,
+       "limit": 0.06164125735950969,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.15458666666666665,
+       "limit": 0.21632519295479186,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    }
+   },
+   "C2_linear_efficiency": {
+    "by_r": {
+     "0.05": {
+      "power": 0.92,
+      "power_r1": 0.95,
+      "ratio": 0.9684210526315791,
+      "d": 0.06499999999999999,
+      "se": 0.009794249246151507,
+      "pass": true
+     },
+     "0.1": {
+      "power": 1.0,
+      "power_r1": 1.0,
+      "ratio": 1.0,
+      "d": 0.09999999999999998,
+      "se": 0.0,
+      "pass": true
+     }
+    },
+    "pass": true
+   },
+   "supported_min_n": 5000,
+   "supported_min_n_ignoring_c2": 5000,
+   "mean_linear_power": 0.7549999999999999,
+   "nonlinear_power": {
+    "Mo_n1000_r0.05": {
+     "comb": 0.2525,
+     "r1": 0.2775,
+     "gcm": 0.3175,
+     "pcm": 0.1225,
+     "cauchy": 0.2725
+    },
+    "Mo_n1000_r0.1": {
+     "comb": 0.7425,
+     "r1": 0.8275,
+     "gcm": 0.8,
+     "pcm": 0.3725,
+     "cauchy": 0.7275
+    },
+    "Mo_n2000_r0.05": {
+     "comb": 0.435,
+     "r1": 0.52,
+     "gcm": 0.525,
+     "pcm": 0.1075,
+     "cauchy": 0.4075
+    },
+    "Mo_n2000_r0.1": {
+     "comb": 0.97,
+     "r1": 0.985,
+     "gcm": 0.985,
+     "pcm": 0.5325,
+     "cauchy": 0.93
+    },
+    "Mo_n5000_r0.05": {
+     "comb": 0.8325,
+     "r1": 0.8825,
+     "gcm": 0.8775,
+     "pcm": 0.265,
+     "cauchy": 0.7875
+    },
+    "Mo_n5000_r0.1": {
+     "comb": 1.0,
+     "r1": 1.0,
+     "gcm": 1.0,
+     "pcm": 0.95,
+     "cauchy": 1.0
+    },
+    "U_n1000_r0.05": {
+     "comb": 0.06,
+     "r1": 0.0625,
+     "gcm": 0.065,
+     "pcm": 0.07,
+     "cauchy": 0.075
+    },
+    "U_n1000_r0.1": {
+     "comb": 0.18,
+     "r1": 0.0625,
+     "gcm": 0.07,
+     "pcm": 0.2525,
+     "cauchy": 0.185
+    },
+    "U_n2000_r0.05": {
+     "comb": 0.1025,
+     "r1": 0.045,
+     "gcm": 0.055,
+     "pcm": 0.1225,
+     "cauchy": 0.1025
+    },
+    "U_n2000_r0.1": {
+     "comb": 0.3525,
+     "r1": 0.05,
+     "gcm": 0.055,
+     "pcm": 0.4575,
+     "cauchy": 0.365
+    },
+    "U_n5000_r0.05": {
+     "comb": 0.18,
+     "r1": 0.065,
+     "gcm": 0.065,
+     "pcm": 0.24,
+     "cauchy": 0.19
+    },
+    "U_n5000_r0.1": {
+     "comb": 0.8975,
+     "r1": 0.045,
+     "gcm": 0.0475,
+     "pcm": 0.935,
+     "cauchy": 0.89
+    },
+    "I_n1000_r0.05": {
+     "comb": 0.07,
+     "r1": 0.0275,
+     "gcm": 0.045,
+     "pcm": 0.07,
+     "cauchy": 0.0725
+    },
+    "I_n1000_r0.1": {
+     "comb": 0.105,
+     "r1": 0.06,
+     "gcm": 0.075,
+     "pcm": 0.1275,
+     "cauchy": 0.115
+    },
+    "I_n2000_r0.05": {
+     "comb": 0.0425,
+     "r1": 0.0425,
+     "gcm": 0.045,
+     "pcm": 0.0775,
+     "cauchy": 0.0525
+    },
+    "I_n2000_r0.1": {
+     "comb": 0.2225,
+     "r1": 0.055,
+     "gcm": 0.0575,
+     "pcm": 0.3075,
+     "cauchy": 0.22
+    },
+    "I_n5000_r0.05": {
+     "comb": 0.1075,
+     "r1": 0.035,
+     "gcm": 0.04,
+     "pcm": 0.16,
+     "cauchy": 0.1075
+    },
+    "I_n5000_r0.1": {
+     "comb": 0.6625,
+     "r1": 0.0375,
+     "gcm": 0.0475,
+     "pcm": 0.76,
+     "cauchy": 0.6575
+    }
+   }
+  },
+  "F2": {
+   "engine": "gradient_boosting",
+   "ladder": {
+    "1000": {
+     "method": "F2_comb_g0",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.03933333333333333,
+        "trials": 1500,
+        "limit": 0.07016242616553779,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.05191489361702128,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.046170212765957445,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.048545454545454544,
+        "trials": 5500,
+        "limit": 0.06291831881649447,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.05425531914893617,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 12,
+      "gross": []
+     },
+     "C3": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.032,
+        "trials": 500,
+        "limit": 0.08126209248472321,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.05380952380952381,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.04619047619047619,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.05238095238095238,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.06230769230769231,
+        "trials": 1300,
+        "limit": 0.07128705835549945,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 5,
+      "gross": []
+     },
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.03593939393939394,
+       "limit": 0.061061784937188605,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.1413181818181818,
+       "limit": 0.21586574921579224,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    },
+    "2000": {
+     "method": "F2_comb_g0",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.05733333333333333,
+        "trials": 1500,
+        "limit": 0.07016242616553779,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.045319148936170214,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.043617021276595745,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.04727272727272727,
+        "trials": 5500,
+        "limit": 0.06291831881649447,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.04893617021276596,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       }
+      },
+      "failing_cells": [
+       21
+      ],
+      "allowance": 2,
+      "cells": 12,
+      "gross": []
+     },
+     "C3": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.052,
+        "trials": 500,
+        "limit": 0.08126209248472321,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.051904761904761905,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.04476190476190476,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.05857142857142857,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.06076923076923077,
+        "trials": 1300,
+        "limit": 0.07128705835549945,
+        "pass": true
+       }
+      },
+      "failing_cells": [
+       21
+      ],
+      "allowance": 1,
+      "cells": 5,
+      "gross": []
+     },
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.03300606060606061,
+       "limit": 0.06056830525619939,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.13764242424242423,
+       "limit": 0.21547847602734782,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    },
+    "5000": {
+     "method": "F2_comb_g0",
+     "C1": {
+      "pass": false,
+      "pooled": {
+       "X1": {
+        "rate": 0.042,
+        "trials": 1500,
+        "limit": 0.07016242616553779,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.06531914893617022,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": false
+       },
+       "Z1": {
+        "rate": 0.07127659574468086,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": false
+       },
+       "Z2": {
+        "rate": 0.06563636363636363,
+        "trials": 5500,
+        "limit": 0.06291831881649447,
+        "pass": false
+       },
+       "M": {
+        "rate": 0.05127659574468085,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       }
+      },
+      "failing_cells": [
+       33
+      ],
+      "allowance": 2,
+      "cells": 12,
+      "gross": [
+       {
+        "cell_index": 33,
+        "role": "X0",
+        "rate": 0.27
+       },
+       {
+        "cell_index": 33,
+        "role": "Z1",
+        "rate": 0.3125
+       },
+       {
+        "cell_index": 33,
+        "role": "Z2",
+        "rate": 0.2525
+       }
+      ]
+     },
+     "C3": {
+      "pass": false,
+      "pooled": {
+       "X1": {
+        "rate": 0.05,
+        "trials": 500,
+        "limit": 0.08126209248472321,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.09952380952380953,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": false
+       },
+       "Z1": {
+        "rate": 0.10238095238095238,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": false
+       },
+       "Z2": {
+        "rate": 0.09,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": false
+       },
+       "M": {
+        "rate": 0.05692307692307692,
+        "trials": 1300,
+        "limit": 0.07128705835549945,
+        "pass": true
+       }
+      },
+      "failing_cells": [
+       33
+      ],
+      "allowance": 1,
+      "cells": 5,
+      "gross": [
+       {
+        "cell_index": 33,
+        "role": "X0",
+        "rate": 0.27
+       },
+       {
+        "cell_index": 33,
+        "role": "Z1",
+        "rate": 0.3125
+       },
+       {
+        "cell_index": 33,
+        "role": "Z2",
+        "rate": 0.2525
+       }
+      ]
+     },
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.05029696969696969,
+       "limit": 0.06127535554933397,
+       "failing_cells": [
+        33
+       ],
+       "allowance": 1,
+       "gross": [
+        {
+         "cell_index": 33,
+         "fdr": 0.17554166666666668
+        }
+       ],
+       "pass": false
+      },
+      "0.2": {
+       "pooled_fdr": 0.1489181818181818,
+       "limit": 0.2150041093679252,
+       "failing_cells": [
+        33
+       ],
+       "allowance": 1,
+       "gross": [
+        {
+         "cell_index": 33,
+         "fdr": 0.32724999999999993
+        }
+       ],
+       "pass": false
+      },
+      "pass": false
+     },
+     "pass": false
+    },
+    "300": {
+     "method": "F2_comb_g2",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.061,
+        "trials": 1000,
+        "limit": 0.07357010368409606,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.047619047619047616,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.05095238095238095,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.046,
+        "trials": 5000,
+        "limit": 0.06330480283737161,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.05119047619047619,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 11,
+      "gross": []
+     },
+     "C3": null,
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.03434999999999999,
+       "limit": 0.06127345244755449,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.1460533333333333,
+       "limit": 0.21655719583138064,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    },
+    "500": {
+     "method": "F2_comb_g2",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.038,
+        "trials": 1000,
+        "limit": 0.07357010368409606,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.05,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.05023809523809524,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.0448,
+        "trials": 5000,
+        "limit": 0.06330480283737161,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.04261904761904762,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 11,
+      "gross": []
+     },
+     "C3": null,
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.03083333333333333,
+       "limit": 0.06085160723938596,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.13410666666666668,
+       "limit": 0.21579208267021593,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    }
+   },
+   "C2_linear_efficiency": {
+    "by_r": {
+     "0.05": {
+      "power": 0.9275,
+      "power_r1": 0.95,
+      "ratio": 0.9763157894736842,
+      "d": 0.07249999999999998,
+      "se": 0.007466508345081249,
+      "pass": true
+     },
+     "0.1": {
+      "power": 1.0,
+      "power_r1": 1.0,
+      "ratio": 1.0,
+      "d": 0.09999999999999998,
+      "se": 0.0,
+      "pass": true
+     }
+    },
+    "pass": true
+   },
+   "supported_min_n": null,
+   "supported_min_n_ignoring_c2": null,
+   "mean_linear_power": 0.7579166666666667,
+   "nonlinear_power": {
+    "Mo_n1000_r0.05": {
+     "comb": 0.2525,
+     "r1": 0.2775,
+     "gcm": 0.3075,
+     "pcm": 0.1425,
+     "cauchy": 0.2625
+    },
+    "Mo_n1000_r0.1": {
+     "comb": 0.7475,
+     "r1": 0.8275,
+     "gcm": 0.845,
+     "pcm": 0.375,
+     "cauchy": 0.7725
+    },
+    "Mo_n2000_r0.05": {
+     "comb": 0.43,
+     "r1": 0.52,
+     "gcm": 0.5275,
+     "pcm": 0.175,
+     "cauchy": 0.435
+    },
+    "Mo_n2000_r0.1": {
+     "comb": 0.9725,
+     "r1": 0.985,
+     "gcm": 0.9925,
+     "pcm": 0.7625,
+     "cauchy": 0.9725
+    },
+    "Mo_n5000_r0.05": {
+     "comb": 0.86,
+     "r1": 0.8825,
+     "gcm": 0.8925,
+     "pcm": 0.52,
+     "cauchy": 0.855
+    },
+    "Mo_n5000_r0.1": {
+     "comb": 1.0,
+     "r1": 1.0,
+     "gcm": 1.0,
+     "pcm": 0.995,
+     "cauchy": 1.0
+    },
+    "U_n1000_r0.05": {
+     "comb": 0.09,
+     "r1": 0.0625,
+     "gcm": 0.06,
+     "pcm": 0.09,
+     "cauchy": 0.0975
+    },
+    "U_n1000_r0.1": {
+     "comb": 0.22,
+     "r1": 0.0625,
+     "gcm": 0.0575,
+     "pcm": 0.295,
+     "cauchy": 0.225
+    },
+    "U_n2000_r0.05": {
+     "comb": 0.11,
+     "r1": 0.045,
+     "gcm": 0.045,
+     "pcm": 0.1575,
+     "cauchy": 0.12
+    },
+    "U_n2000_r0.1": {
+     "comb": 0.4625,
+     "r1": 0.05,
+     "gcm": 0.05,
+     "pcm": 0.5825,
+     "cauchy": 0.4875
+    },
+    "U_n5000_r0.05": {
+     "comb": 0.29,
+     "r1": 0.065,
+     "gcm": 0.065,
+     "pcm": 0.37,
+     "cauchy": 0.2925
+    },
+    "U_n5000_r0.1": {
+     "comb": 0.9725,
+     "r1": 0.045,
+     "gcm": 0.0425,
+     "pcm": 0.9775,
+     "cauchy": 0.97
+    },
+    "I_n1000_r0.05": {
+     "comb": 0.035,
+     "r1": 0.0275,
+     "gcm": 0.04,
+     "pcm": 0.04,
+     "cauchy": 0.045
+    },
+    "I_n1000_r0.1": {
+     "comb": 0.0875,
+     "r1": 0.06,
+     "gcm": 0.0725,
+     "pcm": 0.1125,
+     "cauchy": 0.095
+    },
+    "I_n2000_r0.05": {
+     "comb": 0.055,
+     "r1": 0.0425,
+     "gcm": 0.0425,
+     "pcm": 0.07,
+     "cauchy": 0.06
+    },
+    "I_n2000_r0.1": {
+     "comb": 0.165,
+     "r1": 0.055,
+     "gcm": 0.0575,
+     "pcm": 0.2275,
+     "cauchy": 0.18
+    },
+    "I_n5000_r0.05": {
+     "comb": 0.0875,
+     "r1": 0.035,
+     "gcm": 0.0275,
+     "pcm": 0.1325,
+     "cauchy": 0.0925
+    },
+    "I_n5000_r0.1": {
+     "comb": 0.5275,
+     "r1": 0.0375,
+     "gcm": 0.04,
+     "pcm": 0.615,
+     "cauchy": 0.5275
+    }
+   }
+  },
+  "F3": {
+   "engine": "lightgbm",
+   "ladder": {
+    "1000": {
+     "method": "F3_comb_g0",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.048,
+        "trials": 1500,
+        "limit": 0.07016242616553779,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.05702127659574468,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.05148936170212766,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.04745454545454546,
+        "trials": 5500,
+        "limit": 0.06291831881649447,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.05574468085106383,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 12,
+      "gross": []
+     },
+     "C3": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.034,
+        "trials": 500,
+        "limit": 0.08126209248472321,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.055714285714285716,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.051904761904761905,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.039523809523809524,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.06538461538461539,
+        "trials": 1300,
+        "limit": 0.07128705835549945,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 5,
+      "gross": []
+     },
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.04173939393939394,
+       "limit": 0.061576133757125034,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.14866060606060605,
+       "limit": 0.216143333193033,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    },
+    "2000": {
+     "method": "F3_comb_g0",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.056666666666666664,
+        "trials": 1500,
+        "limit": 0.07016242616553779,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.046170212765957445,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.045319148936170214,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.04454545454545455,
+        "trials": 5500,
+        "limit": 0.06291831881649447,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.0523404255319149,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 12,
+      "gross": []
+     },
+     "C3": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.046,
+        "trials": 500,
+        "limit": 0.08126209248472321,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.0419047619047619,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.04380952380952381,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.047142857142857146,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.05846153846153846,
+        "trials": 1300,
+        "limit": 0.07128705835549945,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 5,
+      "gross": []
+     },
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.03871212121212122,
+       "limit": 0.06117702828170743,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.13931515151515148,
+       "limit": 0.2155185264604406,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    },
+    "5000": {
+     "method": "F3_comb_g0",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.044,
+        "trials": 1500,
+        "limit": 0.07016242616553779,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.04680851063829787,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.050851063829787234,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.047818181818181815,
+        "trials": 5500,
+        "limit": 0.06291831881649447,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.05063829787234043,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 12,
+      "gross": []
+     },
+     "C3": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.06,
+        "trials": 500,
+        "limit": 0.08126209248472321,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.04476190476190476,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.056666666666666664,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.05,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.05384615384615385,
+        "trials": 1300,
+        "limit": 0.07128705835549945,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 5,
+      "gross": []
+     },
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.041087878787878784,
+       "limit": 0.061027325284810495,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.14165757575757576,
+       "limit": 0.21506644498555744,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    },
+    "300": {
+     "method": "F3_comb_g2",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.049,
+        "trials": 1000,
+        "limit": 0.07357010368409606,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.049761904761904764,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.049761904761904764,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.0448,
+        "trials": 5000,
+        "limit": 0.06330480283737161,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.04452380952380952,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 11,
+      "gross": []
+     },
+     "C3": null,
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.034113333333333336,
+       "limit": 0.061260841438728904,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.13757999999999998,
+       "limit": 0.21626969673431914,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    },
+    "500": {
+     "method": "F3_comb_g2",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.042,
+        "trials": 1000,
+        "limit": 0.07357010368409606,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.049523809523809526,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.051904761904761905,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.0464,
+        "trials": 5000,
+        "limit": 0.06330480283737161,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.040952380952380955,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 11,
+      "gross": []
+     },
+     "C3": null,
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.034833333333333334,
+       "limit": 0.06117912455814688,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.13629,
+       "limit": 0.2158754942822487,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    }
+   },
+   "C2_linear_efficiency": {
+    "by_r": {
+     "0.05": {
+      "power": 0.93,
+      "power_r1": 0.95,
+      "ratio": 0.9789473684210527,
+      "d": 0.07499999999999997,
+      "se": 0.007816023641463079,
+      "pass": true
+     },
+     "0.1": {
+      "power": 1.0,
+      "power_r1": 1.0,
+      "ratio": 1.0,
+      "d": 0.09999999999999998,
+      "se": 0.0,
+      "pass": true
+     }
+    },
+    "pass": true
+   },
+   "supported_min_n": 300,
+   "supported_min_n_ignoring_c2": 300,
+   "mean_linear_power": 0.7745833333333335,
+   "nonlinear_power": {
+    "Mo_n1000_r0.05": {
+     "comb": 0.2525,
+     "r1": 0.2775,
+     "gcm": 0.3275,
+     "pcm": 0.1325,
+     "cauchy": 0.2475
+    },
+    "Mo_n1000_r0.1": {
+     "comb": 0.785,
+     "r1": 0.8275,
+     "gcm": 0.8375,
+     "pcm": 0.2875,
+     "cauchy": 0.755
+    },
+    "Mo_n2000_r0.05": {
+     "comb": 0.45,
+     "r1": 0.52,
+     "gcm": 0.55,
+     "pcm": 0.1125,
+     "cauchy": 0.4275
+    },
+    "Mo_n2000_r0.1": {
+     "comb": 0.9775,
+     "r1": 0.985,
+     "gcm": 0.9925,
+     "pcm": 0.5075,
+     "cauchy": 0.9675
+    },
+    "Mo_n5000_r0.05": {
+     "comb": 0.8625,
+     "r1": 0.8825,
+     "gcm": 0.91,
+     "pcm": 0.3075,
+     "cauchy": 0.825
+    },
+    "Mo_n5000_r0.1": {
+     "comb": 1.0,
+     "r1": 1.0,
+     "gcm": 1.0,
+     "pcm": 0.96,
+     "cauchy": 1.0
+    },
+    "U_n1000_r0.05": {
+     "comb": 0.0725,
+     "r1": 0.0625,
+     "gcm": 0.06,
+     "pcm": 0.075,
+     "cauchy": 0.07
+    },
+    "U_n1000_r0.1": {
+     "comb": 0.1575,
+     "r1": 0.0625,
+     "gcm": 0.0575,
+     "pcm": 0.1975,
+     "cauchy": 0.155
+    },
+    "U_n2000_r0.05": {
+     "comb": 0.07,
+     "r1": 0.045,
+     "gcm": 0.0475,
+     "pcm": 0.0925,
+     "cauchy": 0.07
+    },
+    "U_n2000_r0.1": {
+     "comb": 0.3425,
+     "r1": 0.05,
+     "gcm": 0.05,
+     "pcm": 0.4175,
+     "cauchy": 0.3375
+    },
+    "U_n5000_r0.05": {
+     "comb": 0.2025,
+     "r1": 0.065,
+     "gcm": 0.0575,
+     "pcm": 0.2625,
+     "cauchy": 0.2075
+    },
+    "U_n5000_r0.1": {
+     "comb": 0.8875,
+     "r1": 0.045,
+     "gcm": 0.0525,
+     "pcm": 0.9275,
+     "cauchy": 0.8825
+    },
+    "I_n1000_r0.05": {
+     "comb": 0.05,
+     "r1": 0.0275,
+     "gcm": 0.0275,
+     "pcm": 0.0675,
+     "cauchy": 0.0525
+    },
+    "I_n1000_r0.1": {
+     "comb": 0.11,
+     "r1": 0.06,
+     "gcm": 0.0625,
+     "pcm": 0.1075,
+     "cauchy": 0.11
+    },
+    "I_n2000_r0.05": {
+     "comb": 0.045,
+     "r1": 0.0425,
+     "gcm": 0.0325,
+     "pcm": 0.0725,
+     "cauchy": 0.045
+    },
+    "I_n2000_r0.1": {
+     "comb": 0.19,
+     "r1": 0.055,
+     "gcm": 0.0525,
+     "pcm": 0.2575,
+     "cauchy": 0.2
+    },
+    "I_n5000_r0.05": {
+     "comb": 0.125,
+     "r1": 0.035,
+     "gcm": 0.0375,
+     "pcm": 0.17,
+     "cauchy": 0.13
+    },
+    "I_n5000_r0.1": {
+     "comb": 0.625,
+     "r1": 0.0375,
+     "gcm": 0.04,
+     "pcm": 0.72,
+     "cauchy": 0.6275
+    }
+   }
+  },
+  "F4": {
+   "engine": "lightgbm_linear_tree",
+   "ladder": {
+    "1000": {
+     "method": "F4_comb_g0",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.048666666666666664,
+        "trials": 1500,
+        "limit": 0.07016242616553779,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.05127659574468085,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.04468085106382979,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.046181818181818185,
+        "trials": 5500,
+        "limit": 0.06291831881649447,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.05106382978723404,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 12,
+      "gross": []
+     },
+     "C3": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.042,
+        "trials": 500,
+        "limit": 0.08126209248472321,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.045714285714285714,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.04523809523809524,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.04238095238095238,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.05307692307692308,
+        "trials": 1300,
+        "limit": 0.07128705835549945,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 5,
+      "gross": []
+     },
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.03633030303030303,
+       "limit": 0.061140940570589275,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.14119090909090912,
+       "limit": 0.2158772139880739,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    },
+    "2000": {
+     "method": "F4_comb_g0",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.050666666666666665,
+        "trials": 1500,
+        "limit": 0.07016242616553779,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.047021276595744683,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.04382978723404255,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.04872727272727273,
+        "trials": 5500,
+        "limit": 0.06291831881649447,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.05127659574468085,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 12,
+      "gross": []
+     },
+     "C3": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.038,
+        "trials": 500,
+        "limit": 0.08126209248472321,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.047619047619047616,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.04285714285714286,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.05285714285714286,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.055384615384615386,
+        "trials": 1300,
+        "limit": 0.07128705835549945,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 5,
+      "gross": []
+     },
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.03817575757575758,
+       "limit": 0.06105836825378409,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.1409363636363636,
+       "limit": 0.21556573049802258,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    },
+    "5000": {
+     "method": "F4_comb_g0",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.042,
+        "trials": 1500,
+        "limit": 0.07016242616553779,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.045744680851063826,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.045744680851063826,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.04418181818181818,
+        "trials": 5500,
+        "limit": 0.06291831881649447,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.04680851063829787,
+        "trials": 4700,
+        "limit": 0.06356575009245538,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 12,
+      "gross": []
+     },
+     "C3": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.04,
+        "trials": 500,
+        "limit": 0.08126209248472321,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.043333333333333335,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.047619047619047616,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.04285714285714286,
+        "trials": 2100,
+        "limit": 0.06781458898581125,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.04846153846153846,
+        "trials": 1300,
+        "limit": 0.07128705835549945,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 1,
+      "cells": 5,
+      "gross": []
+     },
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.03998181818181818,
+       "limit": 0.060949875296592765,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.1359212121212121,
+       "limit": 0.2148587482009191,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    },
+    "300": {
+     "method": "F4_comb_g2",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.073,
+        "trials": 1000,
+        "limit": 0.07357010368409606,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.052142857142857144,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.0530952380952381,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.0464,
+        "trials": 5000,
+        "limit": 0.06330480283737161,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.049761904761904764,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 11,
+      "gross": []
+     },
+     "C3": null,
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.03816,
+       "limit": 0.06158210397480701,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.14412333333333333,
+       "limit": 0.21641832274450754,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    },
+    "500": {
+     "method": "F4_comb_g2",
+     "C1": {
+      "pass": true,
+      "pooled": {
+       "X1": {
+        "rate": 0.051,
+        "trials": 1000,
+        "limit": 0.07357010368409606,
+        "pass": true
+       },
+       "X0": {
+        "rate": 0.04690476190476191,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z1": {
+        "rate": 0.05761904761904762,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       },
+       "Z2": {
+        "rate": 0.0456,
+        "trials": 5000,
+        "limit": 0.06330480283737161,
+        "pass": true
+       },
+       "M": {
+        "rate": 0.04452380952380952,
+        "trials": 4200,
+        "limit": 0.06406128276998557,
+        "pass": true
+       }
+      },
+      "failing_cells": [],
+      "allowance": 2,
+      "cells": 11,
+      "gross": []
+     },
+     "C3": null,
+     "C4": {
+      "0.05": {
+       "pooled_fdr": 0.031566666666666666,
+       "limit": 0.06081482448336657,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "0.2": {
+       "pooled_fdr": 0.14188,
+       "limit": 0.2160836466961517,
+       "failing_cells": [],
+       "allowance": 1,
+       "gross": [],
+       "pass": true
+      },
+      "pass": true
+     },
+     "pass": true
+    }
+   },
+   "C2_linear_efficiency": {
+    "by_r": {
+     "0.05": {
+      "power": 0.9325,
+      "power_r1": 0.95,
+      "ratio": 0.9815789473684211,
+      "d": 0.07749999999999997,
+      "se": 0.008148642582654467,
+      "pass": true
+     },
+     "0.1": {
+      "power": 1.0,
+      "power_r1": 1.0,
+      "ratio": 1.0,
+      "d": 0.09999999999999998,
+      "se": 0.0,
+      "pass": true
+     }
+    },
+    "pass": true
+   },
+   "supported_min_n": 300,
+   "supported_min_n_ignoring_c2": 300,
+   "mean_linear_power": 0.7704166666666667,
+   "nonlinear_power": {
+    "Mo_n1000_r0.05": {
+     "comb": 0.26,
+     "r1": 0.2775,
+     "gcm": 0.32,
+     "pcm": 0.0975,
+     "cauchy": 0.2625
+    },
+    "Mo_n1000_r0.1": {
+     "comb": 0.7975,
+     "r1": 0.8275,
+     "gcm": 0.8575,
+     "pcm": 0.31,
+     "cauchy": 0.8025
+    },
+    "Mo_n2000_r0.05": {
+     "comb": 0.435,
+     "r1": 0.52,
+     "gcm": 0.5575,
+     "pcm": 0.1475,
+     "cauchy": 0.425
+    },
+    "Mo_n2000_r0.1": {
+     "comb": 0.9775,
+     "r1": 0.985,
+     "gcm": 0.995,
+     "pcm": 0.5875,
+     "cauchy": 0.97
+    },
+    "Mo_n5000_r0.05": {
+     "comb": 0.8475,
+     "r1": 0.8825,
+     "gcm": 0.905,
+     "pcm": 0.3675,
+     "cauchy": 0.8275
+    },
+    "Mo_n5000_r0.1": {
+     "comb": 1.0,
+     "r1": 1.0,
+     "gcm": 1.0,
+     "pcm": 0.9925,
+     "cauchy": 1.0
+    },
+    "U_n1000_r0.05": {
+     "comb": 0.075,
+     "r1": 0.0625,
+     "gcm": 0.055,
+     "pcm": 0.07,
+     "cauchy": 0.075
+    },
+    "U_n1000_r0.1": {
+     "comb": 0.175,
+     "r1": 0.0625,
+     "gcm": 0.0625,
+     "pcm": 0.2225,
+     "cauchy": 0.1675
+    },
+    "U_n2000_r0.05": {
+     "comb": 0.1,
+     "r1": 0.045,
+     "gcm": 0.0425,
+     "pcm": 0.1325,
+     "cauchy": 0.1075
+    },
+    "U_n2000_r0.1": {
+     "comb": 0.4075,
+     "r1": 0.05,
+     "gcm": 0.0525,
+     "pcm": 0.4925,
+     "cauchy": 0.4125
+    },
+    "U_n5000_r0.05": {
+     "comb": 0.23,
+     "r1": 0.065,
+     "gcm": 0.06,
+     "pcm": 0.315,
+     "cauchy": 0.2425
+    },
+    "U_n5000_r0.1": {
+     "comb": 0.945,
+     "r1": 0.045,
+     "gcm": 0.045,
+     "pcm": 0.955,
+     "cauchy": 0.9325
+    },
+    "I_n1000_r0.05": {
+     "comb": 0.03,
+     "r1": 0.0275,
+     "gcm": 0.0275,
+     "pcm": 0.045,
+     "cauchy": 0.04
+    },
+    "I_n1000_r0.1": {
+     "comb": 0.1175,
+     "r1": 0.06,
+     "gcm": 0.0675,
+     "pcm": 0.165,
+     "cauchy": 0.12
+    },
+    "I_n2000_r0.05": {
+     "comb": 0.0525,
+     "r1": 0.0425,
+     "gcm": 0.045,
+     "pcm": 0.0725,
+     "cauchy": 0.055
+    },
+    "I_n2000_r0.1": {
+     "comb": 0.1975,
+     "r1": 0.055,
+     "gcm": 0.04,
+     "pcm": 0.295,
+     "cauchy": 0.2075
+    },
+    "I_n5000_r0.05": {
+     "comb": 0.08,
+     "r1": 0.035,
+     "gcm": 0.0325,
+     "pcm": 0.145,
+     "cauchy": 0.0825
+    },
+    "I_n5000_r0.1": {
+     "comb": 0.73,
+     "r1": 0.0375,
+     "gcm": 0.0375,
+     "pcm": 0.8,
+     "cauchy": 0.735
+    }
+   }
+  }
+ },
+ "supported_n_table": [
+  {
+   "engine": "random_forest",
+   "configuration": "F1",
+   "supported_min_n": 5000,
+   "gcm_correction": "g0",
+   "linear_efficiency": {
+    "0.05": 0.9684210526315791,
+    "0.1": 1.0
+   },
+   "alternatives": []
+  },
+  {
+   "engine": "gradient_boosting",
+   "configuration": "F2",
+   "supported_min_n": null,
+   "gcm_correction": "g0",
+   "linear_efficiency": {
+    "0.05": 0.9763157894736842,
+    "0.1": 1.0
+   },
+   "alternatives": []
+  },
+  {
+   "engine": "lightgbm",
+   "configuration": "F3",
+   "supported_min_n": 300,
+   "gcm_correction": "g2",
+   "linear_efficiency": {
+    "0.05": 0.9789473684210527,
+    "0.1": 1.0
+   },
+   "alternatives": [
+    "F4"
+   ]
+  }
+ ]
+}

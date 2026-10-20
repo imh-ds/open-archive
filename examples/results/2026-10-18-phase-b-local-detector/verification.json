@@ -1,0 +1,109 @@
+{
+ "integrity": [],
+ "stat_mismatches": [],
+ "checks": {
+  "integrity": true,
+  "recomputation": true,
+  "summary_rows": true,
+  "criteria": true,
+  "regeneration": false
+ },
+ "summary_rows": {
+  "found": 9560,
+  "expected": 9560
+ },
+ "criteria_rederived": {
+  "agree": {
+   "correction_chosen": true,
+   "screen_qualifies_from": true,
+   "ladder_steps": true,
+   "linear_efficiency": true,
+   "supported_min_n": true,
+   "supported_n_table": true,
+   "reference_defects": true
+  },
+  "independent": {
+   "chosen": "g2",
+   "screen": {
+    "g0": 300,
+    "g1": 300,
+    "g2": 200
+   },
+   "table": {
+    "random_forest": [
+     "F1",
+     5000
+    ],
+    "gradient_boosting": [
+     "F2",
+     null
+    ],
+    "lightgbm": [
+     "F3",
+     300
+    ]
+   },
+   "r1_ok": true,
+   "configs": {
+    "F1": {
+     "steps": {
+      "1000": false,
+      "2000": false,
+      "5000": true,
+      "300": true,
+      "500": true
+     },
+     "c2": true,
+     "supported_min_n": 5000,
+     "linear_power": 0.7549999999999999
+    },
+    "F2": {
+     "steps": {
+      "1000": true,
+      "2000": true,
+      "5000": false,
+      "300": true,
+      "500": true
+     },
+     "c2": true,
+     "supported_min_n": null,
+     "linear_power": 0.7579166666666667
+    },
+    "F3": {
+     "steps": {
+      "1000": true,
+      "2000": true,
+      "5000": true,
+      "300": true,
+      "500": true
+     },
+     "c2": true,
+     "supported_min_n": 300,
+     "linear_power": 0.7745833333333335
+    },
+    "F4": {
+     "steps": {
+      "1000": true,
+      "2000": true,
+      "5000": true,
+      "300": true,
+      "500": true
+     },
+     "c2": true,
+     "supported_min_n": 300,
+     "linear_power": 0.7704166666666667
+    }
+   }
+  }
+ },
+ "regeneration": {
+  "parts": 8,
+  "items": 585,
+  "expected": 585,
+  "frozen_items": 565,
+  "loop_items": 20,
+  "max_abs_diff": 0.23024679323915453,
+  "tolerance": 1e-10
+ },
+ "pass": false
+}

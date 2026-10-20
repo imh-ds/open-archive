@@ -1,0 +1,1176 @@
+{
+ "cells_planned": 78,
+ "cells_complete": 78,
+ "chunks_planned": 3141,
+ "chunks_missing": 0,
+ "missing": [],
+ "invalid_files": [],
+ "shard_controls": [
+  {
+   "shard": 0,
+   "assigned": 26,
+   "completed": 26,
+   "not_started": [],
+   "seconds": 5598.1,
+   "measured_vs_planned": 0.822,
+   "complete": true
+  },
+  {
+   "shard": 1,
+   "assigned": 26,
+   "completed": 26,
+   "not_started": [],
+   "seconds": 7308.5,
+   "measured_vs_planned": 1.072,
+   "complete": true
+  },
+  {
+   "shard": 2,
+   "assigned": 26,
+   "completed": 26,
+   "not_started": [],
+   "seconds": 5179.6,
+   "measured_vs_planned": 0.752,
+   "complete": true
+  },
+  {
+   "shard": 3,
+   "assigned": 26,
+   "completed": 26,
+   "not_started": [],
+   "seconds": 5577.0,
+   "measured_vs_planned": 0.82,
+   "complete": true
+  },
+  {
+   "shard": 4,
+   "assigned": 26,
+   "completed": 26,
+   "not_started": [],
+   "seconds": 7278.9,
+   "measured_vs_planned": 1.071,
+   "complete": true
+  },
+  {
+   "shard": 5,
+   "assigned": 26,
+   "completed": 26,
+   "not_started": [],
+   "seconds": 5554.8,
+   "measured_vs_planned": 0.813,
+   "complete": true
+  },
+  {
+   "shard": 6,
+   "assigned": 26,
+   "completed": 26,
+   "not_started": [],
+   "seconds": 7281.4,
+   "measured_vs_planned": 1.065,
+   "complete": true
+  },
+  {
+   "shard": 7,
+   "assigned": 26,
+   "completed": 26,
+   "not_started": [],
+   "seconds": 5535.0,
+   "measured_vs_planned": 0.813,
+   "complete": true
+  },
+  {
+   "shard": 8,
+   "assigned": 26,
+   "completed": 26,
+   "not_started": [],
+   "seconds": 7309.5,
+   "measured_vs_planned": 1.07,
+   "complete": true
+  },
+  {
+   "shard": 9,
+   "assigned": 26,
+   "completed": 26,
+   "not_started": [],
+   "seconds": 8389.6,
+   "measured_vs_planned": 1.232,
+   "complete": true
+  },
+  {
+   "shard": 10,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 5556.1,
+   "measured_vs_planned": 0.815,
+   "complete": true
+  },
+  {
+   "shard": 11,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 4662.6,
+   "measured_vs_planned": 0.684,
+   "complete": true
+  },
+  {
+   "shard": 12,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7218.9,
+   "measured_vs_planned": 1.063,
+   "complete": true
+  },
+  {
+   "shard": 13,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 5514.0,
+   "measured_vs_planned": 0.81,
+   "complete": true
+  },
+  {
+   "shard": 14,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 5543.7,
+   "measured_vs_planned": 0.816,
+   "complete": true
+  },
+  {
+   "shard": 15,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 5501.6,
+   "measured_vs_planned": 0.81,
+   "complete": true
+  },
+  {
+   "shard": 16,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7336.9,
+   "measured_vs_planned": 1.074,
+   "complete": true
+  },
+  {
+   "shard": 17,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 5520.1,
+   "measured_vs_planned": 0.814,
+   "complete": true
+  },
+  {
+   "shard": 18,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7244.1,
+   "measured_vs_planned": 1.069,
+   "complete": true
+  },
+  {
+   "shard": 19,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 5524.3,
+   "measured_vs_planned": 0.814,
+   "complete": true
+  },
+  {
+   "shard": 20,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 5513.9,
+   "measured_vs_planned": 0.814,
+   "complete": true
+  },
+  {
+   "shard": 21,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 5565.0,
+   "measured_vs_planned": 0.821,
+   "complete": true
+  },
+  {
+   "shard": 22,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 8421.2,
+   "measured_vs_planned": 1.237,
+   "complete": true
+  },
+  {
+   "shard": 23,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7198.4,
+   "measured_vs_planned": 1.057,
+   "complete": true
+  },
+  {
+   "shard": 24,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7224.5,
+   "measured_vs_planned": 1.062,
+   "complete": true
+  },
+  {
+   "shard": 25,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7202.5,
+   "measured_vs_planned": 1.059,
+   "complete": true
+  },
+  {
+   "shard": 26,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 4686.0,
+   "measured_vs_planned": 0.683,
+   "complete": true
+  },
+  {
+   "shard": 27,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7204.4,
+   "measured_vs_planned": 1.062,
+   "complete": true
+  },
+  {
+   "shard": 28,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7250.1,
+   "measured_vs_planned": 1.068,
+   "complete": true
+  },
+  {
+   "shard": 29,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7217.3,
+   "measured_vs_planned": 1.062,
+   "complete": true
+  },
+  {
+   "shard": 30,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7182.6,
+   "measured_vs_planned": 1.058,
+   "complete": true
+  },
+  {
+   "shard": 31,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7209.1,
+   "measured_vs_planned": 1.063,
+   "complete": true
+  },
+  {
+   "shard": 32,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7281.7,
+   "measured_vs_planned": 1.072,
+   "complete": true
+  },
+  {
+   "shard": 33,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7197.7,
+   "measured_vs_planned": 1.061,
+   "complete": true
+  },
+  {
+   "shard": 34,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7150.6,
+   "measured_vs_planned": 1.054,
+   "complete": true
+  },
+  {
+   "shard": 35,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7204.6,
+   "measured_vs_planned": 1.063,
+   "complete": true
+  },
+  {
+   "shard": 36,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 5481.7,
+   "measured_vs_planned": 0.805,
+   "complete": true
+  },
+  {
+   "shard": 37,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7188.4,
+   "measured_vs_planned": 1.059,
+   "complete": true
+  },
+  {
+   "shard": 38,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 8629.7,
+   "measured_vs_planned": 1.266,
+   "complete": true
+  },
+  {
+   "shard": 39,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7240.0,
+   "measured_vs_planned": 1.068,
+   "complete": true
+  },
+  {
+   "shard": 40,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 5484.6,
+   "measured_vs_planned": 0.806,
+   "complete": true
+  },
+  {
+   "shard": 41,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7302.7,
+   "measured_vs_planned": 1.077,
+   "complete": true
+  },
+  {
+   "shard": 42,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7189.7,
+   "measured_vs_planned": 1.058,
+   "complete": true
+  },
+  {
+   "shard": 43,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7170.2,
+   "measured_vs_planned": 1.054,
+   "complete": true
+  },
+  {
+   "shard": 44,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 5510.0,
+   "measured_vs_planned": 0.807,
+   "complete": true
+  },
+  {
+   "shard": 45,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7454.6,
+   "measured_vs_planned": 1.074,
+   "complete": true
+  },
+  {
+   "shard": 46,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 8019.0,
+   "measured_vs_planned": 1.174,
+   "complete": true
+  },
+  {
+   "shard": 47,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7257.5,
+   "measured_vs_planned": 1.07,
+   "complete": true
+  },
+  {
+   "shard": 48,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7220.7,
+   "measured_vs_planned": 1.062,
+   "complete": true
+  },
+  {
+   "shard": 49,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7183.0,
+   "measured_vs_planned": 1.056,
+   "complete": true
+  },
+  {
+   "shard": 50,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7350.7,
+   "measured_vs_planned": 1.076,
+   "complete": true
+  },
+  {
+   "shard": 51,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7335.2,
+   "measured_vs_planned": 1.074,
+   "complete": true
+  },
+  {
+   "shard": 52,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7301.6,
+   "measured_vs_planned": 1.069,
+   "complete": true
+  },
+  {
+   "shard": 53,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7324.8,
+   "measured_vs_planned": 1.073,
+   "complete": true
+  },
+  {
+   "shard": 54,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7278.7,
+   "measured_vs_planned": 1.065,
+   "complete": true
+  },
+  {
+   "shard": 55,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7062.7,
+   "measured_vs_planned": 1.025,
+   "complete": true
+  },
+  {
+   "shard": 56,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7263.8,
+   "measured_vs_planned": 1.066,
+   "complete": true
+  },
+  {
+   "shard": 57,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7388.2,
+   "measured_vs_planned": 1.083,
+   "complete": true
+  },
+  {
+   "shard": 58,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 5595.0,
+   "measured_vs_planned": 0.818,
+   "complete": true
+  },
+  {
+   "shard": 59,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 8337.1,
+   "measured_vs_planned": 1.215,
+   "complete": true
+  },
+  {
+   "shard": 60,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7278.7,
+   "measured_vs_planned": 1.066,
+   "complete": true
+  },
+  {
+   "shard": 61,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7337.9,
+   "measured_vs_planned": 1.075,
+   "complete": true
+  },
+  {
+   "shard": 62,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7388.9,
+   "measured_vs_planned": 1.084,
+   "complete": true
+  },
+  {
+   "shard": 63,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7346.3,
+   "measured_vs_planned": 1.077,
+   "complete": true
+  },
+  {
+   "shard": 64,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7284.7,
+   "measured_vs_planned": 1.068,
+   "complete": true
+  },
+  {
+   "shard": 65,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7338.0,
+   "measured_vs_planned": 1.075,
+   "complete": true
+  },
+  {
+   "shard": 66,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7282.9,
+   "measured_vs_planned": 1.067,
+   "complete": true
+  },
+  {
+   "shard": 67,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7381.4,
+   "measured_vs_planned": 1.081,
+   "complete": true
+  },
+  {
+   "shard": 68,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7303.7,
+   "measured_vs_planned": 1.072,
+   "complete": true
+  },
+  {
+   "shard": 69,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 8848.8,
+   "measured_vs_planned": 1.287,
+   "complete": true
+  },
+  {
+   "shard": 70,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7286.9,
+   "measured_vs_planned": 1.071,
+   "complete": true
+  },
+  {
+   "shard": 71,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7311.4,
+   "measured_vs_planned": 1.072,
+   "complete": true
+  },
+  {
+   "shard": 72,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7310.7,
+   "measured_vs_planned": 1.072,
+   "complete": true
+  },
+  {
+   "shard": 73,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7275.8,
+   "measured_vs_planned": 1.067,
+   "complete": true
+  },
+  {
+   "shard": 74,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7299.5,
+   "measured_vs_planned": 1.073,
+   "complete": true
+  },
+  {
+   "shard": 75,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 4578.7,
+   "measured_vs_planned": 0.662,
+   "complete": true
+  },
+  {
+   "shard": 76,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7286.9,
+   "measured_vs_planned": 1.067,
+   "complete": true
+  },
+  {
+   "shard": 77,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7239.9,
+   "measured_vs_planned": 1.059,
+   "complete": true
+  },
+  {
+   "shard": 78,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7275.6,
+   "measured_vs_planned": 1.062,
+   "complete": true
+  },
+  {
+   "shard": 79,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7290.3,
+   "measured_vs_planned": 1.066,
+   "complete": true
+  },
+  {
+   "shard": 80,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7336.7,
+   "measured_vs_planned": 1.073,
+   "complete": true
+  },
+  {
+   "shard": 81,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7279.0,
+   "measured_vs_planned": 1.066,
+   "complete": true
+  },
+  {
+   "shard": 82,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 5230.1,
+   "measured_vs_planned": 0.763,
+   "complete": true
+  },
+  {
+   "shard": 83,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7285.0,
+   "measured_vs_planned": 1.067,
+   "complete": true
+  },
+  {
+   "shard": 84,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7235.0,
+   "measured_vs_planned": 1.054,
+   "complete": true
+  },
+  {
+   "shard": 85,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7371.4,
+   "measured_vs_planned": 1.07,
+   "complete": true
+  },
+  {
+   "shard": 86,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7227.3,
+   "measured_vs_planned": 1.051,
+   "complete": true
+  },
+  {
+   "shard": 87,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7312.0,
+   "measured_vs_planned": 1.063,
+   "complete": true
+  },
+  {
+   "shard": 88,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7318.8,
+   "measured_vs_planned": 1.064,
+   "complete": true
+  },
+  {
+   "shard": 89,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7226.2,
+   "measured_vs_planned": 1.053,
+   "complete": true
+  },
+  {
+   "shard": 90,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 8319.8,
+   "measured_vs_planned": 1.193,
+   "complete": true
+  },
+  {
+   "shard": 91,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7263.5,
+   "measured_vs_planned": 1.056,
+   "complete": true
+  },
+  {
+   "shard": 92,
+   "assigned": 24,
+   "completed": 24,
+   "not_started": [],
+   "seconds": 7260.5,
+   "measured_vs_planned": 1.056,
+   "complete": true
+  },
+  {
+   "shard": 93,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 6075.9,
+   "measured_vs_planned": 0.814,
+   "complete": true
+  },
+  {
+   "shard": 94,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 8007.3,
+   "measured_vs_planned": 1.073,
+   "complete": true
+  },
+  {
+   "shard": 95,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7999.0,
+   "measured_vs_planned": 1.067,
+   "complete": true
+  },
+  {
+   "shard": 96,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 8007.0,
+   "measured_vs_planned": 1.066,
+   "complete": true
+  },
+  {
+   "shard": 97,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7965.4,
+   "measured_vs_planned": 1.063,
+   "complete": true
+  },
+  {
+   "shard": 98,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7987.6,
+   "measured_vs_planned": 1.067,
+   "complete": true
+  },
+  {
+   "shard": 99,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 6067.4,
+   "measured_vs_planned": 0.813,
+   "complete": true
+  },
+  {
+   "shard": 100,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7959.1,
+   "measured_vs_planned": 1.067,
+   "complete": true
+  },
+  {
+   "shard": 101,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 8064.4,
+   "measured_vs_planned": 1.077,
+   "complete": true
+  },
+  {
+   "shard": 102,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7570.1,
+   "measured_vs_planned": 1.06,
+   "complete": true
+  },
+  {
+   "shard": 103,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7590.9,
+   "measured_vs_planned": 1.068,
+   "complete": true
+  },
+  {
+   "shard": 104,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7782.5,
+   "measured_vs_planned": 1.094,
+   "complete": true
+  },
+  {
+   "shard": 105,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 8806.2,
+   "measured_vs_planned": 1.235,
+   "complete": true
+  },
+  {
+   "shard": 106,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7567.6,
+   "measured_vs_planned": 1.061,
+   "complete": true
+  },
+  {
+   "shard": 107,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 5378.5,
+   "measured_vs_planned": 0.752,
+   "complete": true
+  },
+  {
+   "shard": 108,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7572.0,
+   "measured_vs_planned": 1.066,
+   "complete": true
+  },
+  {
+   "shard": 109,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7585.0,
+   "measured_vs_planned": 1.069,
+   "complete": true
+  },
+  {
+   "shard": 110,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7632.2,
+   "measured_vs_planned": 1.074,
+   "complete": true
+  },
+  {
+   "shard": 111,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7651.6,
+   "measured_vs_planned": 1.076,
+   "complete": true
+  },
+  {
+   "shard": 112,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7629.6,
+   "measured_vs_planned": 1.069,
+   "complete": true
+  },
+  {
+   "shard": 113,
+   "assigned": 25,
+   "completed": 25,
+   "not_started": [],
+   "seconds": 7129.6,
+   "measured_vs_planned": 1.034,
+   "complete": true
+  },
+  {
+   "shard": 114,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 6236.8,
+   "measured_vs_planned": 0.906,
+   "complete": true
+  },
+  {
+   "shard": 115,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7274.0,
+   "measured_vs_planned": 1.072,
+   "complete": true
+  },
+  {
+   "shard": 116,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 4802.5,
+   "measured_vs_planned": 0.697,
+   "complete": true
+  },
+  {
+   "shard": 117,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7274.1,
+   "measured_vs_planned": 1.071,
+   "complete": true
+  },
+  {
+   "shard": 118,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7687.2,
+   "measured_vs_planned": 1.118,
+   "complete": true
+  },
+  {
+   "shard": 119,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7319.6,
+   "measured_vs_planned": 1.077,
+   "complete": true
+  },
+  {
+   "shard": 120,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7359.7,
+   "measured_vs_planned": 1.08,
+   "complete": true
+  },
+  {
+   "shard": 121,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 8376.8,
+   "measured_vs_planned": 1.219,
+   "complete": true
+  },
+  {
+   "shard": 122,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 8074.7,
+   "measured_vs_planned": 1.172,
+   "complete": true
+  },
+  {
+   "shard": 123,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7314.1,
+   "measured_vs_planned": 1.073,
+   "complete": true
+  },
+  {
+   "shard": 124,
+   "assigned": 27,
+   "completed": 27,
+   "not_started": [],
+   "seconds": 7304.2,
+   "measured_vs_planned": 1.074,
+   "complete": true
+  }
+ ],
+ "runner_seconds_max": 8848.8,
+ "complete": true,
+ "supported_n_table": [
+  {
+   "engine": "random_forest",
+   "configuration": "F1",
+   "supported_min_n": 5000,
+   "gcm_correction": "g0",
+   "linear_efficiency": {
+    "0.05": 0.9684210526315791,
+    "0.1": 1.0
+   },
+   "alternatives": []
+  },
+  {
+   "engine": "gradient_boosting",
+   "configuration": "F2",
+   "supported_min_n": null,
+   "gcm_correction": "g0",
+   "linear_efficiency": {
+    "0.05": 0.9763157894736842,
+    "0.1": 1.0
+   },
+   "alternatives": []
+  },
+  {
+   "engine": "lightgbm",
+   "configuration": "F3",
+   "supported_min_n": 300,
+   "gcm_correction": "g2",
+   "linear_efficiency": {
+    "0.05": 0.9789473684210527,
+    "0.1": 1.0
+   },
+   "alternatives": [
+    "F4"
+   ]
+  }
+ ],
+ "correction_screen_chosen": "g2",
+ "reference_defects": []
+}

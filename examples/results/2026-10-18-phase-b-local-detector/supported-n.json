@@ -1,0 +1,37 @@
+[
+ {
+  "engine": "random_forest",
+  "configuration": "F1",
+  "supported_min_n": 5000,
+  "gcm_correction": "g0",
+  "linear_efficiency": {
+   "0.05": 0.9684210526315791,
+   "0.1": 1.0
+  },
+  "alternatives": []
+ },
+ {
+  "engine": "gradient_boosting",
+  "configuration": "F2",
+  "supported_min_n": null,
+  "gcm_correction": "g0",
+  "linear_efficiency": {
+   "0.05": 0.9763157894736842,
+   "0.1": 1.0
+  },
+  "alternatives": []
+ },
+ {
+  "engine": "lightgbm",
+  "configuration": "F3",
+  "supported_min_n": 300,
+  "gcm_correction": "g2",
+  "linear_efficiency": {
+   "0.05": 0.9789473684210527,
+   "0.1": 1.0
+  },
+  "alternatives": [
+   "F4"
+  ]
+ }
+]
